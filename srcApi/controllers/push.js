@@ -4,11 +4,11 @@ const webpush = require('web-push');
 
 // Key generation: https://web-push-codelab.glitch.me/
 const vapidKeys = {
-  public: 'BPBc2Ei5rc3cDBa6899wa_Oem87Vm0pB2N9Al2j8dqioxpoLKwMnb3Rk7F6u9A8WnchLcnqNFgzkIjXpN1ylrJg',
-  private: 'pL0FCH8vUtOr5aI9j0Jzy0NqRoVdalYtw4xjS-00oPs'
+  public: 'BBh_zx5aEnlMyrM8W8anuyxx2ibkb9cUxZclHHDHuBd3uX7PNp-minttLaWe0jpOiHvNfUHXD1rUXTfYf87URlE',
+  private: '43EHInkVq7KRGQ9IJLNLnQ_jGtpsYVPqf7lUcVPd6uE'
 };
 
-const subscriptions = [];
+let subscriptions = [];
 
 const register = (req, res) => {
   if (!subscriptions.find(subscription => subscription.endpoint === req.body.endpoint)) {
@@ -46,6 +46,12 @@ const sendNotification = (subscription, payload) => {
     );
 };
 
+const clearSubscriptions = (req, res) => {
+  subscriptions = [];
+  console.log('Subscriptions cleared.');
+  res.send(200, 'Subscriptions cleared');
+};
+
 const setup = restify => {
   webpush.setVapidDetails(
     'mailto:example@yourdomain.org',
@@ -54,6 +60,7 @@ const setup = restify => {
   );
   restify.post('/push/register', register);
   restify.post('/push/notifyAll', notifyAll);
+  restify.get('/push/clear', clearSubscriptions);
 };
 
-module.exports = { setup };
+module.exports = {setup};
