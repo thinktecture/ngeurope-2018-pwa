@@ -3,19 +3,23 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js"
+    "build": "rimraf build && tsc",
+    "start": "nodemon --exec ts-node src/index.ts",
+    "start-server": "node build/index.js"
   },
   "private": true,
   "dependencies": {
-    "restify": "^4.3.1",
-    "restify-cors-middleware": "0.0.8",
-    "rxjs": "^5.5.2",
-    "web-push": "^3.2.2"
+    "restify": "^6.3.4",
+    "restify-cors-middleware": "^1.1.0",
+    "web-push": "^3.2.5"
   },
   "devDependencies": {
-    "@types/node": "7.0.18",
-    "@types/restify": "^4.3.4",
-    "ts-node": "~3.0.4",
-    "typescript": "~2.4.2"
+    "@types/node": "^8.5.1",
+    "@types/restify": "^5.0.6",
+    "@types/restify-cors-middleware": "^1.0.1",
+    "nodemon": "^1.13.2",
+    "rimraf": "^2.6.2",
+    "ts-node": "^4.0.2",
+    "typescript": "^2.6.2"
   }
 }
