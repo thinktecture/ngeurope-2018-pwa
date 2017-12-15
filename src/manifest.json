@@ -1,0 +1,24 @@
+{
+  "short_name": "WinDev App",
+  "name": "Windows Developer PWA Sample",
+  "icons": [
+    {
+      "src": "assets/launcher-icon-3x.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-1024px-square.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ff584f",
+  "background_color": "#ffffff",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "push": {
+    "showNotifications": true,
+    "backgroundOnly": true
+  }
+}

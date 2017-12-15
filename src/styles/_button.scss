@@ -1,0 +1,14 @@
+.button {
+  background-color: $primary-color;
+  border: none;
+  color: white;
+  padding: $gap / 3;
+  font-size: 14px;
+  outline: none;
+
+  &:active {
+    background-color: white;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+  }
+}

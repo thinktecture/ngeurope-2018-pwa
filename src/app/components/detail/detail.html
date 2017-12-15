@@ -1,0 +1,20 @@
+<h1>Details</h1>
+
+<span *ngIf="!modelProperties">Loading...</span>
+
+<table class="table" *ngIf="modelProperties">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of modelProperties">
+      <td>{{ m.key }}</td>
+      <td>{{ m.value | displayText }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button *ngIf="modelProperties" class="button" (click)="share()">Share to a friend</button>

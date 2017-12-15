@@ -1,0 +1,28 @@
+<ul class="menu">
+  <li class="menu-item" routerLinkActive="active">
+    <a [routerLink]="['/home']" class="menu-link" (click)="closeMenu()"><i class="fa fa-home"></i> Home</a>
+  </li>
+
+  <li class="menu-item dropdown" [ngClass]="{'show': isStarWarsMenuOpen}" routerLinkActive="active">
+    <span class="menu-link" (click)="toggleStarWarsMenu()"><i class="fa fa-podcast"></i>SWAPI</span>
+
+    <ul class="menu dropdown-menu">
+      <li class="menu-item" routerLinkActive="active">
+        <a [routerLink]="['/starwars/list/planets/1']" class="menu-link" (click)="closeMenu()"><i class="fa fa-globe"></i> Planets</a>
+      </li>
+      <li class="menu-item" routerLinkActive="active">
+        <a [routerLink]="['/starwars/list/people/1']" class="menu-link" (click)="closeMenu()"><i class="fa fa-users"></i>People</a>
+      </li>
+    </ul>
+  </li>
+
+  <li class="menu-item dropdown" [ngClass]="{'show': isPokemonMenuOpen}" routerLinkActive="active">
+    <span class="menu-link" (click)="togglePokemonMenu()"><i class="fa fa-optin-monster"></i>PokeAPI</span>
+
+    <ul class="menu dropdown-menu">
+      <li class="menu-item" routerLinkActive="active">
+        <a [routerLink]="['/pokemon/list/pokemon/1']" class="menu-link" (click)="closeMenu()"><i class="fa fa-bug"></i> Pokemon</a>
+      </li>
+    </ul>
+  </li>
+</ul>
