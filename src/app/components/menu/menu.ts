@@ -7,32 +7,19 @@ import { WindowRef } from '../../services/windowRef';
   styleUrls: ['menu.scss']
 })
 export class MenuComponent {
-  public isStarWarsMenuOpen: boolean;
-  public isPokemonMenuOpen: boolean;
+  public isMenuOpen: boolean;
   private readonly _bodyCssClass = 'show-menu';
 
   constructor(private _windowRef: WindowRef) {
   }
 
-  public toggleStarWarsMenu() {
-    if (this.isPokemonMenuOpen) {
-      this.closeMenu();
-    }
-    this.isStarWarsMenuOpen = !this.isStarWarsMenuOpen;
-    this._windowRef.nativeWindow.document.body.classList.toggle(this._bodyCssClass);
-  }
-
-  public togglePokemonMenu() {
-    if (this.isStarWarsMenuOpen) {
-      this.closeMenu();
-    }
-    this.isPokemonMenuOpen = !this.isPokemonMenuOpen;
+  public toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
     this._windowRef.nativeWindow.document.body.classList.toggle(this._bodyCssClass);
   }
 
   public closeMenu() {
-    this.isStarWarsMenuOpen = false;
-    this.isPokemonMenuOpen = false;
+    this.isMenuOpen = false;
     this._windowRef.nativeWindow.document.body.classList.remove(this._bodyCssClass);
   }
 }

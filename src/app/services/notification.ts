@@ -16,7 +16,7 @@ export class NotificationService {
 
     // Key generation: https://web-push-codelab.glitch.me/
     Observable.fromPromise(this._swPush.requestSubscription({
-      serverPublicKey: 'BPBc2Ei5rc3cDBa6899wa_Oem87Vm0pB2N9Al2j8dqioxpoLKwMnb3Rk7F6u9A8WnchLcnqNFgzkIjXpN1ylrJg'
+      serverPublicKey: 'BBh_zx5aEnlMyrM8W8anuyxx2ibkb9cUxZclHHDHuBd3uX7PNp-minttLaWe0jpOiHvNfUHXD1rUXTfYf87URlE'
     }))
       .pipe(
         switchMap(subscription => console.log(subscription) || this._http.post('http://localhost:9090/push/register', subscription))

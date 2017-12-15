@@ -5,19 +5,13 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {PokemonDetailComponent} from './components/detail/pokemonDetail';
-import {StarWarsDetailComponent} from './components/detail/starWarsDetail';
 import {HeaderComponent} from './components/header/header';
 import {HomeComponent} from './components/home/home';
-import {PokemonListComponent} from './components/list/pokemonList';
-import {StarWarsListComponent} from './components/list/starWarsList';
 import {MenuComponent} from './components/menu/menu';
 import {RootComponent} from './components/root/root';
 import {DisplayTextPipe} from './pipes/displayText';
 import {ROUTES} from './routes';
 import {NotificationService} from './services/notification';
-import {PokemonService} from './services/pokemon';
-import {StarWarsService} from './services/starWars';
 import {WindowRef} from './services/windowRef';
 import {ShareService} from './services/share';
 
@@ -27,10 +21,6 @@ import {ShareService} from './services/share';
         HomeComponent,
         HeaderComponent,
         MenuComponent,
-        StarWarsListComponent,
-        StarWarsDetailComponent,
-        PokemonListComponent,
-        PokemonDetailComponent,
         DisplayTextPipe
     ],
     imports: [
@@ -43,8 +33,6 @@ import {ShareService} from './services/share';
     bootstrap: [RootComponent],
     providers: [
         WindowRef,
-        StarWarsService,
-        PokemonService,
         NotificationService,
         ShareService,
     ]
