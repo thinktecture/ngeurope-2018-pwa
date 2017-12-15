@@ -1,0 +1,21 @@
+{
+  "name": "ngeurope-2018-pwa-sample-api",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "private": true,
+  "dependencies": {
+    "restify": "^4.3.1",
+    "restify-cors-middleware": "0.0.8",
+    "rxjs": "^5.5.2",
+    "web-push": "^3.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "7.0.18",
+    "@types/restify": "^4.3.4",
+    "ts-node": "~3.0.4",
+    "typescript": "~2.4.2"
+  }
+}

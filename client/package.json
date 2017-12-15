@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "push-server": "node srcApi/index.js",
     "start": "ng serve",
     "start-prod": "ng build --prod --base-href=\".\" --output-path=\"build\" && static -p 4200 ./build",
     "build": "rimraf build && ng build --base-href=\".\" --output-path=\"build\"",
@@ -24,10 +23,7 @@
     "core-js": "^2.5.1",
     "font-awesome": "4.7.0",
     "include-media": "1.4.9",
-    "restify": "^4.3.1",
-    "restify-cors-middleware": "0.0.8",
     "rxjs": "^5.5.2",
-    "web-push": "^3.2.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
@@ -35,13 +31,10 @@
     "@angular/compiler-cli": "^5.1.1",
     "@angular/service-worker": "^5.1.1",
     "@types/node": "7.0.18",
-    "@types/restify": "^4.3.4",
     "codelyzer": "^4.0.2",
     "mkdirp": "0.5.1",
-    "ncp": "2.0.0",
     "node-static": "^0.7.10",
     "rimraf": "2.6.1",
-    "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
     "typescript": "~2.4.2"
   }

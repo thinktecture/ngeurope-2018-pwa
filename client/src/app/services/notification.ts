@@ -3,6 +3,7 @@ import { Injectable, Optional } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
+import 'rxjs/add/observable/fromPromise';
 
 @Injectable()
 export class NotificationService {
