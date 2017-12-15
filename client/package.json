@@ -8,6 +8,7 @@
     "start-prod": "ng build --prod --base-href=\".\" --output-path=\"build\" && static -p 4200 ./build",
     "build": "rimraf build && ng build --base-href=\".\" --output-path=\"build\"",
     "build-prod": "rimraf build && ng build --prod --base-href=\".\" --output-path=\"build\"",
+    "build-aot": "rimraf build && ng build --prod --aot=true --base-href=\".\" --output-path=\"build\"",
     "lint": "ng lint"
   },
   "private": true,

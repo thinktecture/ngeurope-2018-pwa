@@ -1,6 +1,6 @@
 {
-  "short_name": "WinDev App",
-  "name": "Windows Developer PWA Sample",
+  "short_name": "PWA Demo",
+  "name": "ngEurope 2018 PWA Demo",
   "icons": [
     {
       "src": "assets/launcher-icon-3x.png",

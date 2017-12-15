@@ -26,16 +26,5 @@
         ]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "pokemon",
-      "urls": [
-        "https://pokemon.co/*"
-      ],
-      "cacheConfig": {
-        "strategy": "performance"
-      }
-    }
   ]
 }
