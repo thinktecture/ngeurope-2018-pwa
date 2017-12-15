@@ -11,7 +11,8 @@
         "assets",
         "favicon.ico",
         "cordova.js",
-        "manifest.json"
+        "manifest.json",
+        "web.config"
       ],
       "index": "index.html",
       "main": "main.ts",
