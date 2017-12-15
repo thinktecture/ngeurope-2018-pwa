@@ -12,7 +12,7 @@ export class HeaderComponent {
   }
 
   public get isBackChevronVisible(): boolean {
-    // Mock implementation, to be extended to only show the button on iOS
+    // TODO: to be extended to only show the button on iOS
     return this._location.path() !== '/home';
   }
 
