@@ -1,4 +1,4 @@
-import {ApiServer} from './server';
+import {ApiServer} from './server/apiServer';
 
 const server = new ApiServer();
-server.start();
+server.start(+process.env.PORT || 9090);
