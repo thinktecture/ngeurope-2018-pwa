@@ -1,6 +1,6 @@
 <form #addForm="ngForm">
     <label>
-        <input type="text" [(ngModel)]="item.text" name="addTodoListItem@">
+        <input type="text" [(ngModel)]="item.text" name="addTodoListItem@" required>
     </label>
     <button type="button" [disabled]="!addForm.form.valid" (click)="addItem()">Save</button>
 </form>
