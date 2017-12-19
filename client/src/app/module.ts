@@ -16,26 +16,26 @@ import {WindowRef} from './services/windowRef';
 import {ShareService} from './services/share';
 
 @NgModule({
-    declarations: [
-        RootComponent,
-        HomeComponent,
-        HeaderComponent,
-        MenuComponent,
-        DisplayTextPipe
-    ],
-    imports: [
-        environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [],
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        RouterModule.forRoot(ROUTES, {useHash: true})
-    ],
-    bootstrap: [RootComponent],
-    providers: [
-        WindowRef,
-        NotificationService,
-        ShareService,
-    ]
+  declarations: [
+    RootComponent,
+    HomeComponent,
+    HeaderComponent,
+    MenuComponent,
+    DisplayTextPipe
+  ],
+  imports: [
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(ROUTES, {useHash: true})
+  ],
+  bootstrap: [RootComponent],
+  providers: [
+    WindowRef,
+    NotificationService,
+    ShareService,
+  ]
 })
 export class AppModule {
 }
