@@ -11,9 +11,7 @@ import {MenuComponent} from './components/menu/menu';
 import {RootComponent} from './components/root/root';
 import {DisplayTextPipe} from './pipes/displayText';
 import {ROUTES} from './routes';
-import {NotificationService} from './services/notification';
-import {WindowRef} from './services/windowRef';
-import {ShareService} from './services/share';
+import {APP_SERVICES} from './services';
 
 @NgModule({
   declarations: [
@@ -31,11 +29,7 @@ import {ShareService} from './services/share';
     RouterModule.forRoot(ROUTES, {useHash: true})
   ],
   bootstrap: [RootComponent],
-  providers: [
-    WindowRef,
-    NotificationService,
-    ShareService,
-  ]
+  providers: APP_SERVICES,
 })
 export class AppModule {
 }
