@@ -10,6 +10,6 @@ export class TodoListComponent {
     @Output() public itemCompletedChanged = new EventEmitter<ITodoItem>();
 
     public itemChanged(item: ITodoItem) {
-        this.itemCompletedChanged.next(item);
+        this.itemCompletedChanged.emit(item);
     }
 }
