@@ -1,0 +1,6 @@
+<form #addForm="ngForm">
+    <label>
+        <input type="text" [(ngModel)]="item.text" name="addTodoListItem@">
+    </label>
+    <button type="button" [disabled]="!addForm.form.valid" (click)="addItem()">Save</button>
+</form>

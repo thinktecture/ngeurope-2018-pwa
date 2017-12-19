@@ -21,4 +21,9 @@ export class HomeComponent implements OnInit {
         this._todoService.update(item)
             .then(success => console.log(success));
     }
+
+    public addItem(item: ITodoItem) {
+        this._todoService.add(item)
+            .then(success => console.log(success));
+    }
 }
