@@ -9,13 +9,17 @@ export class TodoService {
         this.table = this._databaseService.table('todos');
     }
 
+    public getAll(): Promise<Array<ITodoItem>>{
+        return this.table.toArray();
+    }
+
     public add(item: ITodoItem): Promise<number> {
         return this.table.add(item);
     }
 
     public update(item): Promise<boolean> {
         return this.table.update(item.id, item)
-            .then(success => !!success);
+            .then(success => !!success)
     }
 
     public delete(item: ITodoItem): Promise<boolean> {

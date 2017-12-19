@@ -3,6 +3,7 @@ import {HomeComponent} from './home/home';
 import {MenuComponent} from './menu/menu';
 import {HeaderComponent} from './header/header';
 import {AboutComponent} from './about/about';
+import {TodoListComponent} from './todoList/todoList';
 
 export const APP_COMPONENTS = [
     RootComponent,
@@ -10,4 +11,5 @@ export const APP_COMPONENTS = [
     MenuComponent,
     HeaderComponent,
     AboutComponent,
+    TodoListComponent
 ];

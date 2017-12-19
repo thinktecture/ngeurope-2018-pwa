@@ -1,0 +1,8 @@
+<ul>
+    <li *ngFor="let item of items">
+        <label>
+            <input type="checkbox" [ngModel]="item.completed" [name]="item.id" (ngModelChange)="itemChanged(item)">
+            {{item.text}}
+        </label>
+    </li>
+</ul>
