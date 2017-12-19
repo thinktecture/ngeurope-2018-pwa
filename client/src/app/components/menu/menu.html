@@ -4,11 +4,11 @@
   </li>
 
   <li class="menu-item dropdown" [ngClass]="{'show': isMenuOpen}" routerLinkActive="active">
-    <span class="menu-link" (click)="toggleMenu()"><i class="fa fa-podcast"></i>Link</span>
+    <span class="menu-link" (click)="toggleMenu()"><i class="fa fa-podcast"></i>Info</span>
 
     <ul class="menu dropdown-menu">
       <li class="menu-item" routerLinkActive="active">
-        <a class="menu-link" (click)="closeMenu()"><i class="fa fa-globe"></i> Link</a>
+        <a class="menu-link" [routerLink]="['/about']" (click)="closeMenu()"><i class="fa fa-globe"></i> About</a>
       </li>
       <li class="menu-item" routerLinkActive="active">
         <a class="menu-link" (click)="closeMenu()"><i class="fa fa-users"></i>Link</a>
