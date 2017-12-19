@@ -5,20 +5,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {HeaderComponent} from './components/header/header';
-import {HomeComponent} from './components/home/home';
-import {MenuComponent} from './components/menu/menu';
 import {RootComponent} from './components/root/root';
 import {DisplayTextPipe} from './pipes/displayText';
 import {ROUTES} from './routes';
 import {APP_SERVICES} from './services';
+import {APP_COMPONENTS} from './components';
 
 @NgModule({
   declarations: [
-    RootComponent,
-    HomeComponent,
-    HeaderComponent,
-    MenuComponent,
+    ...APP_COMPONENTS,
     DisplayTextPipe
   ],
   imports: [
