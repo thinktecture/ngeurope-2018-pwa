@@ -1,4 +1,4 @@
 <h1>PWA @ ngEurope</h1>
 
-<todo-list [items]="items" (itemCompletedChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>
 <todo-list-add (itemAdded)="addItem($event)"></todo-list-add>
+<todo-list [items]="items" (itemCompletedChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>
