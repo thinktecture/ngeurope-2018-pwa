@@ -11,7 +11,7 @@ export class NotificationService {
   }
 
   public register(): void {
-    if (!this._swPush) {
+    if (!this._swPush || !this._swPush.isEnabled) {
       return;
     }
 
