@@ -9,7 +9,7 @@ export class TodoService {
         this.table = this._databaseService.table('todos');
     }
 
-    public getAll(): Promise<Array<ITodoItem>>{
+    public getAll(): Promise<Array<ITodoItem>> {
         return this.table.toArray();
     }
 
@@ -17,7 +17,7 @@ export class TodoService {
         return this.table.put(item);
     }
 
-    public update(item): Promise<boolean> {
+    public update(item: ITodoItem): Promise<boolean> {
         return this.table.update(item.id, item)
             .then(success => !!success)
     }

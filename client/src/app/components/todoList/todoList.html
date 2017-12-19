@@ -1,7 +1,8 @@
 <ul>
     <li *ngFor="let item of items">
         <label>
-            <input type="checkbox" [ngModel]="item.completed" [name]="item.id" (ngModelChange)="itemChanged(item)">
+            <input type="checkbox" [ngModel]="item.completed" [name]="item.id"
+                   (ngModelChange)="itemChanged(item,$event)">
             {{item.text}}
         </label>
         <i class="fa fa-trash" (click)="deleteItem(item)"></i>
