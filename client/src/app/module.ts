@@ -5,16 +5,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {RootComponent} from './components/root/root';
-import {DisplayTextPipe} from './pipes/displayText';
 import {ROUTES} from './routes';
 import {APP_SERVICES} from './services';
 import {APP_COMPONENTS} from './components';
+import {APP_PIPES} from './pipes';
+import {RootComponent} from './components/root/root';
 
 @NgModule({
   declarations: [
     ...APP_COMPONENTS,
-    DisplayTextPipe
+    ...APP_PIPES
   ],
   imports: [
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
