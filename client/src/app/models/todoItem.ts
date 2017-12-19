@@ -1,4 +1,7 @@
-export class TodoItem {
-    constructor(public text: string, public completed: boolean, public id?: number) {
-    }
+import {ITodoItem} from './contracts/todoItem';
+
+export class TodoItem implements ITodoItem {
+    public id: number;
+    public text = '';
+    public completed = false;
 }

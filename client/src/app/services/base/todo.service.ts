@@ -1,0 +1,25 @@
+import {DatabaseService} from './database.service';
+import {ITodoItem} from '../../models/contracts/todoItem';
+import Dexie from 'dexie';
+
+export class TodoService {
+    protected table: Dexie.Table<ITodoItem, number>;
+
+    constructor(private _databaseService: DatabaseService) {
+        this.table = this._databaseService.table('todos');
+    }
+
+    public add(item: ITodoItem): Promise<number> {
+        return this.table.add(item);
+    }
+
+    public update(item): Promise<boolean> {
+        return this.table.update(item.id, item)
+            .then(success => !!success);
+    }
+
+    public delete(item: ITodoItem): Promise<boolean> {
+        return this.table.delete(item.id).then(success => !!success);
+    }
+}
+
