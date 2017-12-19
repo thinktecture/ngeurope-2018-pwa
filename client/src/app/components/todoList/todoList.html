@@ -4,5 +4,6 @@
             <input type="checkbox" [ngModel]="item.completed" [name]="item.id" (ngModelChange)="itemChanged(item)">
             {{item.text}}
         </label>
+        <i class="fa fa-trash" (click)="deleteItem(item)"></i>
     </li>
 </ul>

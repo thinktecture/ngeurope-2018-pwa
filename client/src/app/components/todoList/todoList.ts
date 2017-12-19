@@ -8,8 +8,14 @@ import {ITodoItem} from '../../models/contracts/todoItem';
 export class TodoListComponent {
     @Input() public items: Array<ITodoItem>;
     @Output() public itemCompletedChanged = new EventEmitter<ITodoItem>();
+    @Output() public itemDeleted = new EventEmitter<ITodoItem>();
 
-    public itemChanged(item: ITodoItem) {
+    public itemChanged(item: ITodoItem): void {
         this.itemCompletedChanged.emit(item);
     }
+
+    public deleteItem(item: ITodoItem): void {
+        this.itemDeleted.emit(item);
+    }
 }
+

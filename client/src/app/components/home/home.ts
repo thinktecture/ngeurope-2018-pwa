@@ -30,4 +30,17 @@ export class HomeComponent implements OnInit {
                 }
             });
     }
+
+    public deleteItem(item: ITodoItem) {
+        this._todoService.delete(item)
+            .then(
+                () => {
+                    const index = this.items.indexOf(item);
+                    if (index >= 0) {
+                        this.items.splice(index, 1);
+                    }
+                },
+                (error) => console.log('Error while deleting!', error)
+            );
+    }
 }

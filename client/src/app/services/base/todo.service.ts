@@ -14,7 +14,7 @@ export class TodoService {
     }
 
     public add(item: ITodoItem): Promise<number> {
-        return this.table.add(item);
+        return this.table.put(item);
     }
 
     public update(item): Promise<boolean> {
@@ -22,8 +22,8 @@ export class TodoService {
             .then(success => !!success)
     }
 
-    public delete(item: ITodoItem): Promise<boolean> {
-        return this.table.delete(item.id).then(success => !!success);
+    public delete(item: ITodoItem): Promise<void> {
+        return this.table.delete(item.id);
     }
 }
 
