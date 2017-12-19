@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit {
 
     public addItem(item: ITodoItem) {
         this._todoService.add(item)
-            .then(success => console.log(success));
+            .then(id => {
+                if (id) {
+                    this.items.push(item);
+                }
+            });
     }
 }
