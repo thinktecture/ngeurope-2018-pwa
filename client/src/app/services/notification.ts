@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { Observable } from 'rxjs/Observable';
 import { switchMap } from 'rxjs/operators';
@@ -7,11 +7,11 @@ import 'rxjs/add/observable/fromPromise';
 
 @Injectable()
 export class NotificationService {
-  constructor(@Optional() private _swPush: SwPush, private _http: HttpClient) {
+  constructor(private _swPush: SwPush, private _http: HttpClient) {
   }
 
   public register(): void {
-    if (!this._swPush || !this._swPush.isEnabled) {
+    if (!this._swPush.isEnabled) {
       return;
     }
 
