@@ -20,7 +20,7 @@ export class NotificationService {
       serverPublicKey: 'BBh_zx5aEnlMyrM8W8anuyxx2ibkb9cUxZclHHDHuBd3uX7PNp-minttLaWe0jpOiHvNfUHXD1rUXTfYf87URlE'
     }))
       .pipe(
-        switchMap(subscription => console.log(subscription) || this._http.post('http://localhost:9090/push/register', subscription))
+        switchMap(subscription => console.log(subscription) || this._http.post('http://localhost:9090/api/push/register', subscription))
       )
       .subscribe();
   }
