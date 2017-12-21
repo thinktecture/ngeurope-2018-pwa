@@ -28,6 +28,8 @@ form {
         border: none;
         background-color: transparent;
         color: $alternative-background-color;
+        padding-right: 0;
+        padding-left: 10px;
 
         &[disabled]{
             color: #CCCCCC;
