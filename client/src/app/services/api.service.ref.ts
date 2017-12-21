@@ -2,7 +2,9 @@ import {HttpClient} from '@angular/common/http';
 import {ApiService} from './base/api.service';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class ApiServiceRef extends ApiService {
     private _apiBaseUrl: string;
 
