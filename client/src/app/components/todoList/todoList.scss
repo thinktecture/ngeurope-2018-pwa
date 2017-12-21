@@ -1,0 +1,59 @@
+@import '../../../styles/_variables.scss';
+
+ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        display: flex;
+        flex: 1;
+        margin: 10px 0;
+
+        div {
+            &.form-group {
+                display: flex;
+                flex: 1;
+            }
+        }
+
+        label {
+            display: flex;
+            flex: 1;
+            align-self: center;
+            margin: 0 10px;
+        }
+
+        input {
+            &[type="checkbox"] {
+                background-color: #FFFFFF;
+                appearance: none;
+                border-radius: 3px;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                visibility: visible;
+
+                &:after {
+                    //@include material-icons();
+                    font-family: FontAwesome;
+                    content: '\f00c';
+                    font-size: 1.5rem;
+                    color: transparent;
+                    overflow-wrap: normal;
+                }
+
+                &:checked:after {
+                    color: #FF584F;
+                }
+            }
+        }
+
+        i {
+            &.fa-trash {
+                font-size: 18px;
+                align-self: center;
+            }
+        }
+
+    }
+}

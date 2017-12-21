@@ -3,7 +3,8 @@ import {ITodoItem} from '../../models/contracts/todoItem';
 
 @Component({
     selector: 'todo-list',
-    templateUrl: 'todoList.html'
+    templateUrl: 'todoList.html',
+    styleUrls: ['todoList.scss']
 })
 export class TodoListComponent {
     @Input() public items: Array<ITodoItem>;

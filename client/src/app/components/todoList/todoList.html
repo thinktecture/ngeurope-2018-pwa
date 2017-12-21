@@ -1,10 +1,12 @@
 <ul>
     <li *ngFor="let item of items">
-        <label>
-            <input type="checkbox" [ngModel]="item.completed" [name]="item.id"
+        <div class="form-group">
+            <input type="checkbox" [ngModel]="item.completed" [id]="item.id"
                    (ngModelChange)="itemChanged(item,$event)">
-            {{item.text}}
-        </label>
+            <label [for]="item.id">
+                {{item.text}}
+            </label>
+        </div>
         <i class="fa fa-trash" (click)="deleteItem(item)"></i>
     </li>
 </ul>
