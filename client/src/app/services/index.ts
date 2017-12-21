@@ -1,4 +1,4 @@
-import {NotificationService} from './notification';
+import {NotificationService} from './notification.service';
 import {ShareService} from './share';
 import {WindowRef} from './windowRef';
 import {DatabaseService} from './base/database.service';
