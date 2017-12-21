@@ -5,9 +5,12 @@ import {switchMap} from 'rxjs/operators';
 import 'rxjs/add/observable/fromPromise';
 import {ApiService} from './base/api.service';
 import {environment} from '../../environments/environment';
+import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
 export class NotificationService {
+    private _subscription: Subscription;
+
     constructor(private _swPush: SwPush, private _apiService: ApiService) {
     }
 
@@ -17,12 +20,19 @@ export class NotificationService {
         }
 
         // Key generation: https://web-push-codelab.glitch.me/
-        Observable.fromPromise(this._swPush.requestSubscription({
-            serverPublicKey: environment.push.publicKey
-        }))
+        this._subscription = Observable
+            .fromPromise(this._swPush.requestSubscription({
+                serverPublicKey: environment.push.publicKey
+            }))
             .pipe(
                 switchMap(subscription => console.log(subscription) || this._apiService.post('push/register', subscription))
             )
             .subscribe();
+    }
+
+    public unregister(): void {
+        if (this._subscription) {
+            this._subscription.unsubscribe();
+        }
     }
 }
