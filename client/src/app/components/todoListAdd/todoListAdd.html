@@ -1,6 +1,8 @@
-<form #addForm="ngForm">
-    <label>
-        <input type="text" [(ngModel)]="item.text" name="addTodoListItem@" required>
-    </label>
-    <button type="submit" [disabled]="!addForm.form.valid" (click)="addItem()">Add</button>
+<form #addForm="ngForm" (ngSubmit)="addItem()">
+    <div class="form-group">
+        <label>
+            <input type="text" [(ngModel)]="item.text" name="addTodoListItem@" required>
+        </label>
+    </div>
+    <button [disabled]="!addForm.form.valid" (click)="addItem()"><i class="fa fa-plus-circle"></i></button>
 </form>

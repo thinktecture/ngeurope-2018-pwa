@@ -1,0 +1,42 @@
+@import '../../../styles/_variables.scss';
+
+form {
+    display: flex;
+    flex: 1;
+
+    div {
+        &.form-group {
+            display: flex;
+            flex: 1;
+        }
+    }
+
+    label {
+        width: 100%;
+
+        input {
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            color: $alternative-background-color;
+            padding: 6px;
+            font-size: 14px;
+        }
+    }
+
+    button {
+        border: none;
+        background-color: transparent;
+        color: $alternative-background-color;
+
+        &[disabled]{
+            color: #CCCCCC;
+        }
+
+        i {
+            &.fa {
+                font-size: 16px;
+            }
+        }
+    }
+}
