@@ -32,6 +32,7 @@ ul {
                 justify-content: center;
                 display: flex;
                 visibility: visible;
+                outline: none;
 
                 &:after {
                     //@include material-icons();
