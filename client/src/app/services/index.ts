@@ -1,4 +1,3 @@
-import {NotificationService} from './notification.service';
 import {ShareService} from './share';
 import {WindowRef} from './windowRef';
 import {DatabaseService} from './base/database.service';
@@ -8,9 +7,10 @@ import {TodoServiceRef} from './todo.service.ref';
 import {ApiServiceRef} from './api.service.ref';
 import {ApiService} from './base/api.service';
 import {UpdateService} from './update.service';
+import {PushNotificationService} from './pushNotification.service';
 
 export const APP_SERVICES = [
-    NotificationService,
+    PushNotificationService,
     ShareService,
     WindowRef,
     UpdateService,

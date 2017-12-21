@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {NotificationService} from '../../services/notification.service';
+import {PushNotificationService} from '../../services/pushNotification.service';
 import {UpdateService} from '../../services/update.service';
 
 @Component({
@@ -8,16 +8,16 @@ import {UpdateService} from '../../services/update.service';
     styleUrls: ['root.scss']
 })
 export class RootComponent implements OnInit, OnDestroy {
-    constructor(private _notifcationService: NotificationService, private _updateService: UpdateService) {
+    constructor(private _pushNotifcationService: PushNotificationService, private _updateService: UpdateService) {
     }
 
     public ngOnInit(): void {
-        this._notifcationService.register();
+        this._pushNotifcationService.register();
         this._updateService.register();
     }
 
     public ngOnDestroy(): void {
-        this._notifcationService.unregister();
+        this._pushNotifcationService.unregister();
         this._updateService.unregister();
     }
 }

@@ -8,7 +8,7 @@ import {environment} from '../../environments/environment';
 import {Subscription} from 'rxjs/Subscription';
 
 @Injectable()
-export class NotificationService {
+export class PushNotificationService {
     private _subscription: Subscription;
 
     constructor(private _swPush: SwPush, private _apiService: ApiService) {
