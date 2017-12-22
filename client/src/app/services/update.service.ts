@@ -10,7 +10,6 @@ export class UpdateService {
     }
 
     public register(): void {
-        console.log('udapte registered');
         this._subscription = this._swUpdate.available.subscribe(event => {
                 console.log('Update available:');
                 console.log('Current version: ', event.current.hash);

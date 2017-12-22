@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BrowserFeature} from '../../models/browserFeature';
+import {BrowserFeature} from '../../models/browserFeature.model';
 import {FeatureService} from '../../services/feature.service';
 
 @Component({

@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {ITodoItem} from '../../models/contracts/todoItem';
-import {TodoItem} from '../../models/todoItem';
+import {ITodoItem} from '../../models/contracts/todoItem.interface';
+import {TodoItem} from '../../models/todoItem.model';
 
 @Component({
     selector: 'todo-list-add',
-    templateUrl: 'todoListAdd.html',
-    styleUrls: ['todoListAdd.scss']
+    templateUrl: 'todoListAdd.component.html',
+    styleUrls: ['todoListAdd.component.scss']
 })
 export class TodoListAddComponent {
     @Output() public itemAdded = new EventEmitter<ITodoItem>();

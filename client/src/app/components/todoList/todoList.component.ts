@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ITodoItem} from '../../models/contracts/todoItem';
+import {ITodoItem} from '../../models/contracts/todoItem.interface';
 
 @Component({
     selector: 'todo-list',
-    templateUrl: 'todoList.html',
-    styleUrls: ['todoList.scss']
+    templateUrl: 'todoList.component.html',
+    styleUrls: ['todoList.component.scss']
 })
 export class TodoListComponent {
     @Input() public items: Array<ITodoItem>;

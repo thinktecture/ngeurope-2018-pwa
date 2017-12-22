@@ -4,20 +4,20 @@ import {UpdateService} from '../../services/update.service';
 
 @Component({
     selector: 'app-root',
-    templateUrl: 'root.html',
-    styleUrls: ['root.scss']
+    templateUrl: 'root.component.html',
+    styleUrls: ['root.component.scss']
 })
 export class RootComponent implements OnInit, OnDestroy {
-    constructor(private _pushNotifcationService: PushNotificationService, private _updateService: UpdateService) {
+    constructor(private _pushNotificationService: PushNotificationService, private _updateService: UpdateService) {
     }
 
     public ngOnInit(): void {
-        this._pushNotifcationService.register();
+        this._pushNotificationService.register();
         this._updateService.register();
     }
 
     public ngOnDestroy(): void {
-        this._pushNotifcationService.unregister();
+        this._pushNotificationService.unregister();
         this._updateService.unregister();
     }
 }

@@ -1,5 +1,5 @@
 import {DatabaseService} from './database.service';
-import {ITodoItem} from '../../models/contracts/todoItem';
+import {ITodoItem} from '../../models/contracts/todoItem.interface';
 import Dexie from 'dexie';
 
 export class TodoService {

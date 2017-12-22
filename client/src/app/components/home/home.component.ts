@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoService} from '../../services/base/todo.service';
-import {ITodoItem} from '../../models/contracts/todoItem';
+import {ITodoItem} from '../../models/contracts/todoItem.interface';
 
 @Component({
     selector: 'app-home',
-    templateUrl: 'home.html'
+    templateUrl: 'home.component.html'
 })
 export class HomeComponent implements OnInit {
     public items: Array<ITodoItem>;

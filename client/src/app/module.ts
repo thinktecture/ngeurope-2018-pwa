@@ -8,13 +8,11 @@ import {environment} from '../environments/environment';
 import {ROUTES} from './routes';
 import {APP_SERVICES} from './services';
 import {APP_COMPONENTS} from './components';
-import {APP_PIPES} from './pipes';
-import {RootComponent} from './components/root/root';
+import {RootComponent} from './components/root/root.component';
 
 @NgModule({
   declarations: [
     ...APP_COMPONENTS,
-    ...APP_PIPES
   ],
   imports: [
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),

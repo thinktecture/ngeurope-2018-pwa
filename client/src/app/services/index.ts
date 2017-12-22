@@ -1,4 +1,3 @@
-import {ShareService} from './share';
 import {WindowRef} from './windowRef';
 import {DatabaseService} from './base/database.service';
 import {DatabaseServiceRef} from './database.service.ref';
@@ -12,7 +11,6 @@ import {FeatureService} from './feature.service';
 
 export const APP_SERVICES = [
     PushNotificationService,
-    ShareService,
     WindowRef,
     UpdateService,
     FeatureService,

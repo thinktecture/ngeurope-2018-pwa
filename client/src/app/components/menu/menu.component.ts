@@ -3,8 +3,8 @@ import { WindowRef } from '../../services/windowRef';
 
 @Component({
   selector: 'app-menu',
-  templateUrl: 'menu.html',
-  styleUrls: ['menu.scss']
+  templateUrl: 'menu.component.html',
+  styleUrls: ['menu.component.scss']
 })
 export class MenuComponent {
   public isMenuOpen: boolean;

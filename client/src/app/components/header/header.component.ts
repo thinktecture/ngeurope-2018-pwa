@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  templateUrl: 'header.html',
-  styleUrls: ['header.scss']
+  templateUrl: 'header.component.html',
+  styleUrls: ['header.component.scss']
 })
 export class HeaderComponent {
   constructor(private _location: Location, private _route: ActivatedRoute) {
