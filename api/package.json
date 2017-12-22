@@ -1,26 +1,29 @@
 {
-  "name": "ngeurope-2018-pwa-sample-api",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "build": "rimraf build && tsc",
-    "start": "node build/index.js",
-    "start-dev-server": "nodemon --exec ts-node src/index.ts"
-  },
-  "private": true,
-  "dependencies": {
-    "restify": "^6.3.4",
-    "restify-cors-middleware": "^1.1.0",
-    "web-push": "^3.2.5"
-  },
-  "devDependencies": {
-    "@types/node": "^8.5.1",
-    "@types/restify": "^5.0.6",
-    "@types/restify-cors-middleware": "^1.0.1",
-    "nodemon": "^1.13.2",
-    "rimraf": "^2.6.2",
-    "ts-node": "^4.0.2",
-    "tslint": "^5.3.2",
-    "typescript": "^2.6.2"
-  }
+    "name": "ngeurope-2018-pwa-sample-api",
+    "version": "0.0.0",
+    "license": "MIT",
+    "scripts": {
+        "build": "rimraf build && tsc",
+        "start": "node build/index.js",
+        "start-dev-server": "nodemon --exec ts-node src/index.ts"
+    },
+    "private": true,
+    "dependencies": {
+        "restify": "^6.3.4",
+        "restify-cors-middleware": "^1.1.0",
+        "web-push": "^3.2.5"
+    },
+    "devDependencies": {
+        "@types/node": "^8.5.1",
+        "@types/restify": "^5.0.6",
+        "@types/restify-cors-middleware": "^1.0.1",
+        "nodemon": "^1.13.2",
+        "rimraf": "^2.6.2",
+        "ts-node": "^4.0.2",
+        "tslint": "^5.3.2",
+        "typescript": "^2.6.2"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    }
 }
