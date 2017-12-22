@@ -5,6 +5,7 @@ import {HeaderComponent} from './header/header';
 import {AboutComponent} from './about/about';
 import {TodoListComponent} from './todoList/todoList';
 import {TodoListAddComponent} from './todoListAdd/todoListAdd';
+import {FeaturesComponent} from './features/features.component';
 
 export const APP_COMPONENTS = [
     RootComponent,
@@ -14,4 +15,5 @@ export const APP_COMPONENTS = [
     AboutComponent,
     TodoListComponent,
     TodoListAddComponent,
+    FeaturesComponent,
 ];

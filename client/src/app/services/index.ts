@@ -8,12 +8,14 @@ import {ApiServiceRef} from './api.service.ref';
 import {ApiService} from './base/api.service';
 import {UpdateService} from './update.service';
 import {PushNotificationService} from './pushNotification.service';
+import {FeatureService} from './feature.service';
 
 export const APP_SERVICES = [
     PushNotificationService,
     ShareService,
     WindowRef,
     UpdateService,
+    FeatureService,
     { provide: DatabaseService, useClass: DatabaseServiceRef },
     { provide: TodoService, useClass: TodoServiceRef },
     { provide: ApiService, useClass: ApiServiceRef },
