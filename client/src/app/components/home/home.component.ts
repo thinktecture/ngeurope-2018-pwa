@@ -50,8 +50,8 @@ export class HomeComponent implements OnInit {
             .then(items => {
                 return this._syncService.sync(items)
                     .subscribe(result => {
-                        this.items = result;
-                        this._todoService.overwrite(this.items);
+                        this._todoService.overwrite(result)
+                            .then(items => this.items = items);
                     });
             });
     }

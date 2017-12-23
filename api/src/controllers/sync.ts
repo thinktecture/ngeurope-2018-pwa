@@ -9,7 +9,7 @@ export class SyncController implements BaseController {
         syncId: '11e94ce4-e717-41d5-9a67-e70331cd7a42',
         deleted: false,
         completed: false,
-        text: 'Prepare ngEurope demo'
+        text: 'Prepare ngEurope demo',
     }, {
         syncId: '60d09e91-651d-41d3-bc6b-5500cbcc53bf',
         deleted: false,
@@ -25,14 +25,16 @@ export class SyncController implements BaseController {
         const list: Array<ISyncItem> = req.body;
 
         list.forEach(syncItem => {
-            console.log('Item: ', syncItem);
             const index = this._items.findIndex(item => item.syncId === syncItem.syncId);
-            console.log(index);
             if (index >= 0) {
-                this._items[index] = syncItem;
+                if (syncItem.changed || syncItem.deleted) {
+                    syncItem.changed = false;
+                    this._items[index] = syncItem;
+                }
             } else {
                 if (!syncItem.syncId) {
                     syncItem.syncId = uuid.v4();
+                    syncItem.changed = false;
                 }
 
                 this._items.push(syncItem);

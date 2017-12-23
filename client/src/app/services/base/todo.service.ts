@@ -21,20 +21,21 @@ export class TodoService {
     }
 
     public update(item: ITodoItem): Promise<boolean> {
+        item.changed = true;
         return this.table.update(item.id, item)
             .then(success => !!success)
     }
 
     public delete(item: ITodoItem): Promise<boolean> {
         item.deleted = true;
-        return this.table.put(item)
+        return this.table.update(item.id, item)
             .then(success => !!success);
     }
 
-    public overwrite(list: Array<ITodoItem>): Promise<boolean> {
+    public overwrite(list: Array<ITodoItem>): Promise<Array<ITodoItem>> {
         return this.table.clear()
             .then(() => this.table.bulkAdd(list))
-            .then(success => !!success);
+            .then(() => this.getAll(false));
     }
 }
 
