@@ -8,11 +8,13 @@ export class SyncController implements BaseController {
     private _items: Array<any> = [{
         syncId: '11e94ce4-e717-41d5-9a67-e70331cd7a42',
         deleted: false,
+        changed: false,
         completed: false,
         text: 'Prepare ngEurope demo',
     }, {
         syncId: '60d09e91-651d-41d3-bc6b-5500cbcc53bf',
         deleted: false,
+        changed: false,
         completed: false,
         text: 'Prepare ngEurope slides'
     }];
