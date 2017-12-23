@@ -7,6 +7,7 @@ import {AboutComponent} from './about/about.component';
 import {TodoListComponent} from './todoList/todoList.component';
 import {TodoListAddComponent} from './todoListAdd/todoListAdd.component';
 import {FloatButtonComponent} from './floatButton/floatButton.component';
+import {DebugComponent} from './debug/debug.component';
 
 export const APP_COMPONENTS = [
     RootComponent,
@@ -18,4 +19,5 @@ export const APP_COMPONENTS = [
     TodoListAddComponent,
     FeaturesComponent,
     FloatButtonComponent,
+    DebugComponent,
 ];

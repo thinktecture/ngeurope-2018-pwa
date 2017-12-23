@@ -37,5 +37,9 @@ export class TodoService {
             .then(() => this.table.bulkAdd(list))
             .then(() => this.getAll(false));
     }
+
+    public clear(): Promise<void> {
+        return this.table.clear();
+    }
 }
 
