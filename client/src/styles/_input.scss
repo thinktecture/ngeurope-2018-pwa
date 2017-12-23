@@ -8,7 +8,7 @@ input {
     }
 
     &[type="checkbox"] {
-        background-color: #FFFFFF;
+        background-color: $white;
         appearance: none;
         border-radius: 3px;
         align-items: center;
@@ -26,7 +26,7 @@ input {
         }
 
         &:checked:after {
-            color: #FF584F;
+            color: $red;
         }
     }
 }

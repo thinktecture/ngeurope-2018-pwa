@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BrowserFeature} from '../../models/browserFeature.model';
 import {FeatureService} from '../../services/feature.service';
 
 @Component({
@@ -7,7 +6,7 @@ import {FeatureService} from '../../services/feature.service';
     styleUrls: ['features.component.scss'],
 })
 export class FeaturesComponent implements OnInit {
-    public features: Array<BrowserFeature>;
+    public features: Array<any>;
 
     constructor(private _featureService: FeatureService) {
     }

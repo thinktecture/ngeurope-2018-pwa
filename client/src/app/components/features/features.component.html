@@ -1,6 +1,6 @@
 <h2>Features</h2>
 
-<ul>
+<ul class="list">
     <li *ngFor="let feature of features; let i = index">
         <div class="form-group">
             <input type="checkbox" [ngModel]="feature.supported" [id]="i">
