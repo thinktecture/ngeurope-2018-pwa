@@ -1,5 +1,5 @@
-import {IDatabaseItem} from '../../models/contracts/databaseItem.interface';
+import {ISyncItem} from '../../models/contracts/syncItem.interface';
 
 export abstract class SyncService {
-    abstract sync(collection: Array<IDatabaseItem>);
+    abstract sync(collection: Array<ISyncItem>): any;
 }

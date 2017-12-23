@@ -2,3 +2,4 @@
 
 <todo-list-add (itemAdded)="addItem($event)"></todo-list-add>
 <todo-list [items]="items" (itemChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>
+<float-button icon="fa-refresh" (clicked)="sync()"></float-button>

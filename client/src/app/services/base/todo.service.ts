@@ -9,8 +9,11 @@ export class TodoService {
         this.table = this._databaseService.table('todos');
     }
 
-    public getAll(): Promise<Array<ITodoItem>> {
-        return this.table.toArray();
+    public getAll(includeDeleted: boolean): Promise<Array<ITodoItem>> {
+        if (includeDeleted) {
+            return this.table.toArray();
+        }
+        return this.table.filter(item => !item.deleted).toArray();
     }
 
     public add(item: ITodoItem): Promise<number> {
@@ -22,8 +25,16 @@ export class TodoService {
             .then(success => !!success)
     }
 
-    public delete(item: ITodoItem): Promise<void> {
-        return this.table.delete(item.id);
+    public delete(item: ITodoItem): Promise<boolean> {
+        item.deleted = true;
+        return this.table.put(item)
+            .then(success => !!success);
+    }
+
+    public overwrite(list: Array<ITodoItem>): Promise<boolean> {
+        return this.table.clear()
+            .then(() => this.table.bulkAdd(list))
+            .then(success => !!success);
     }
 }
 

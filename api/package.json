@@ -11,12 +11,14 @@
     "dependencies": {
         "restify": "^6.3.4",
         "restify-cors-middleware": "^1.1.0",
+        "uuid": "^3.1.0",
         "web-push": "^3.2.5"
     },
     "devDependencies": {
         "@types/node": "^8.5.1",
         "@types/restify": "^5.0.6",
         "@types/restify-cors-middleware": "^1.0.1",
+        "@types/uuid": "^3.4.3",
         "nodemon": "^1.13.2",
         "rimraf": "^2.6.2",
         "ts-node": "^4.0.2",

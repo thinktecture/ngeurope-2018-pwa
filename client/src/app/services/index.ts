@@ -7,6 +7,8 @@ import {ApiServiceRef} from './api.service.ref';
 import {ApiService} from './base/api.service';
 import {UpdateService} from './update.service';
 import {PushNotificationService} from './pushNotification.service';
+import {SyncService} from './base/sync.service';
+import {SyncServiceRef} from './sync.service.ref';
 import {FeatureService} from './feature.service';
 
 export const APP_SERVICES = [
@@ -17,4 +19,5 @@ export const APP_SERVICES = [
     { provide: DatabaseService, useClass: DatabaseServiceRef },
     { provide: TodoService, useClass: TodoServiceRef },
     { provide: ApiService, useClass: ApiServiceRef },
+    { provide: SyncService, useClass: SyncServiceRef },
 ];
