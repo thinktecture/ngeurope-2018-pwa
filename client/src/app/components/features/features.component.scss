@@ -1,47 +1,12 @@
 @import '../../../styles/_variables.scss';
 
 ul {
-    list-style: none;
-    padding-left: 0;
-
     li {
-        display: flex;
-        flex: 1;
-        margin: 10px 0;
-
-        div {
-            &.form-group {
-                display: flex;
-                flex: 1;
-            }
-        }
-
-        label {
-            display: flex;
-            flex: 1;
-            align-self: center;
-            margin: 0 10px;
-        }
-
         input {
             &[type="checkbox"] {
                 background-color: transparent;
-                appearance: none;
-                align-items: center;
-                justify-content: center;
-                display: flex;
-                visibility: visible;
-                outline: none;
-
-                &:after {
-                    //@include material-icons();
-                    font-family: FontAwesome;
-                    font-size: 1.5rem;
-                    overflow-wrap: normal;
-                }
 
                 &:checked:after {
-                    content: '\f00c';
                     color: green;
                 }
 

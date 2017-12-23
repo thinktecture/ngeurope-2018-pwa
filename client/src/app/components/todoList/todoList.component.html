@@ -7,7 +7,7 @@
                 <span *ngIf="editableItem?.id !== item.id">{{item.text}}</span>
                 <form (ngSubmit)="saveItem(itemIndex)">
                     <input type="text" [name]="item.id" *ngIf="editableItem?.id === item.id"
-                           [(ngModel)]="editableItem.text" focusOnInit (escapeKey)="cancelEdit(item)">
+                           [(ngModel)]="editableItem.text" focusOnInit (escapeKey)="cancelEdit()">
                 </form>
             </label>
         </div>
@@ -16,7 +16,7 @@
             <i class="fa fa-trash" (click)="deleteItem(item)"></i>
         </div>
         <div class="edit" *ngIf="editableItem?.id === item.id">
-            <i class="fa fa-times" (click)="cancelEdit(item)"></i>
+            <i class="fa fa-times" (click)="cancelEdit()"></i>
             <i class="fa fa-check" (click)="saveItem(itemIndex)"></i>
         </div>
     </li>

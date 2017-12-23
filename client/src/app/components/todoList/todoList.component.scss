@@ -1,66 +1,18 @@
 @import '../../../styles/_variables.scss';
 
 ul {
-    list-style: none;
     padding-left: 0;
 
     li {
-        display: flex;
-        flex: 1;
-        margin: 10px 0;
-
-        div {
-            &.form-group {
-                display: flex;
-                flex: 1;
-            }
-        }
-
-        label {
-            display: flex;
-            flex: 1;
-            align-self: center;
-            margin: 0 10px;
-        }
-        
         form {
             display: flex;
             flex: 1;
         }
 
         input {
-            &[type="checkbox"] {
-                background-color: #FFFFFF;
-                appearance: none;
-                border-radius: 3px;
-                align-items: center;
-                justify-content: center;
-                display: flex;
-                visibility: visible;
-                outline: none;
-
-                &:after {
-                    //@include material-icons();
-                    font-family: FontAwesome;
-                    content: '\f00c';
-                    font-size: 1.5rem;
-                    color: transparent;
-                    overflow-wrap: normal;
-                }
-
-                &:checked:after {
-                    color: #FF584F;
-                }
-            }
-
             &[type="text"] {
-                width: 100%;
-                border-radius: 4px;
-                border: 1px solid transparent;
-                color: $alternative-background-color;
                 padding: 3px;
                 font-size: 14px;
-                outline-color: $primary-color;
             }
         }
 

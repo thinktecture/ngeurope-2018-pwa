@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ITodoItem} from '../../models/contracts/todoItem.interface';
 
 @Component({
@@ -26,14 +26,16 @@ export class TodoListComponent {
         this.editableItem = Object.create(item);
     }
 
-    public cancelEdit(item: ITodoItem): void {
+    public cancelEdit(): void {
         this.editableItem = null;
     }
 
     public saveItem(itemIndex: number): void {
-        this.items[itemIndex] = this.editableItem;
-        this.editableItem = null;
-        this.itemChanged.emit(this.items[itemIndex]);
+        if (this.editableItem.text) {
+            this.items[itemIndex] = this.editableItem;
+            this.editableItem = null;
+            this.itemChanged.emit(this.items[itemIndex]);
+        }
     }
 }
 
