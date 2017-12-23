@@ -1,4 +1,4 @@
 <h1>Your TODOs</h1>
 
 <todo-list-add (itemAdded)="addItem($event)"></todo-list-add>
-<todo-list [items]="items" (itemCompletedChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>
+<todo-list [items]="items" (itemChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>

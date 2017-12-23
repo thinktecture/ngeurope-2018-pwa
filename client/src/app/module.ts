@@ -9,20 +9,22 @@ import {ROUTES} from './routes';
 import {APP_SERVICES} from './services';
 import {APP_COMPONENTS} from './components';
 import {RootComponent} from './components/root/root.component';
+import {APP_DIRECTIVES} from './directives';
 
 @NgModule({
-  declarations: [
-    ...APP_COMPONENTS,
-  ],
-  imports: [
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(ROUTES, {useHash: true})
-  ],
-  bootstrap: [RootComponent],
-  providers: APP_SERVICES,
+    declarations: [
+        ...APP_COMPONENTS,
+        ...APP_DIRECTIVES,
+    ],
+    imports: [
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        RouterModule.forRoot(ROUTES, { useHash: true })
+    ],
+    bootstrap: [RootComponent],
+    providers: APP_SERVICES,
 })
 export class AppModule {
 }

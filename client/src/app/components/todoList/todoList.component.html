@@ -1,12 +1,23 @@
 <ul>
-    <li *ngFor="let item of items">
+    <li *ngFor="let item of items; let itemIndex = index">
         <div class="form-group">
             <input type="checkbox" [ngModel]="item.completed" [id]="item.id"
-                   (ngModelChange)="itemChanged(item,$event)">
+                   (ngModelChange)="changeItem(item,$event)">
             <label [for]="item.id">
-                {{item.text}}
+                <span *ngIf="editableItem?.id !== item.id">{{item.text}}</span>
+                <form (ngSubmit)="saveItem(itemIndex)">
+                    <input type="text" [name]="item.id" *ngIf="editableItem?.id === item.id"
+                           [(ngModel)]="editableItem.text" focusOnInit (escapeKey)="cancelEdit(item)">
+                </form>
             </label>
         </div>
-        <i class="fa fa-trash" (click)="deleteItem(item)"></i>
+        <div class="read" *ngIf="editableItem?.id !== item.id">
+            <i class="fa fa-pencil" (click)="editItem(item)"></i>
+            <i class="fa fa-trash" (click)="deleteItem(item)"></i>
+        </div>
+        <div class="edit" *ngIf="editableItem?.id === item.id">
+            <i class="fa fa-times" (click)="cancelEdit(item)"></i>
+            <i class="fa fa-check" (click)="saveItem(itemIndex)"></i>
+        </div>
     </li>
 </ul>
