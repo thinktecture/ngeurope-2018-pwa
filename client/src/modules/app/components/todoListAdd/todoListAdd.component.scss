@@ -4,6 +4,12 @@ form {
     display: flex;
     flex: 1;
 
+    input {
+        &[type="text"] {
+            border: 1px solid;
+        }
+    }
+
     div {
         &.form-group {
             display: flex;
