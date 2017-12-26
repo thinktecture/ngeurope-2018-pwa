@@ -4,8 +4,8 @@
     "license": "MIT",
     "scripts": {
         "build": "rimraf build && tsc",
-        "start": "rimraf build && tsc && node build/index.js",
-        "start-dev-server": "nodemon --exec ts-node src/index.ts"
+        "start-server": "node build/index.js",
+        "start": "nodemon --exec ts-node src/index.ts"
     },
     "private": true,
     "dependencies": {
