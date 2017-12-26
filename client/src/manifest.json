@@ -1,24 +1,29 @@
 {
-  "short_name": "PWA Demo",
-  "name": "ngEurope 2018 PWA Demo",
-  "icons": [
-    {
-      "src": "assets/launcher-icon-3x.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "assets/icon-1024px-square.png",
-      "sizes": "1024x1024",
-      "type": "image/png"
+    "short_name": "PWA Demo",
+    "name": "ngEurope 2018 PWA Demo",
+    "icons": [
+        {
+            "src": "assets/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icon-1024x1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ff584f",
+    "background_color": "#ffffff",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "push": {
+        "showNotifications": true,
+        "backgroundOnly": true
     }
-  ],
-  "theme_color": "#ff584f",
-  "background_color": "#ffffff",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "push": {
-    "showNotifications": true,
-    "backgroundOnly": true
-  }
 }

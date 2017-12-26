@@ -36,7 +36,7 @@ export class PushController implements BaseController {
       notification: {
         title: 'Sample Title',
         body: 'Sample Description',
-        icon: '/assets/launcher-icon-3x.png'
+        icon: '/assets/icon-144x144.png'
       }
     };
 
