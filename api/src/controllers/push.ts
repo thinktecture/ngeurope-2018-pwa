@@ -34,8 +34,8 @@ export class PushController implements BaseController {
   private async _notifyAll(req: Request, res: Response) {
     const payload = {
       notification: {
-        title: 'Sample Title',
-        body: 'Sample Description',
+        title: req.body.title,
+        body: req.body.body,
         icon: '/assets/icon-144x144.png'
       }
     };
