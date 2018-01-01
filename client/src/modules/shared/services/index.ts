@@ -10,6 +10,7 @@ import {SyncServiceRef} from './sync.service.ref';
 import {DatabaseService} from './base/database.service';
 import {DatabaseServiceRef} from './database.service.ref';
 import {NotificationService} from './notification.service';
+import {ShareService} from './share.service';
 
 export const SHARED_SERVICES = [
     WindowRef,
@@ -20,4 +21,5 @@ export const SHARED_SERVICES = [
     { provide: SyncService, useClass: SyncServiceRef },
     { provide: DatabaseService, useClass: DatabaseServiceRef },
     NotificationService,
+    ShareService,
 ];

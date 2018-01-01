@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ITodoItem} from '../../../shared/models/contracts/todoItem.interface';
+import {ShareService} from '../../../shared/services/share.service';
+import {NotificationService} from '../../../shared/services/notification.service';
+import {WindowRef} from '../../../shared/services/windowRef';
 
 @Component({
     selector: 'todo-list',
@@ -12,6 +15,11 @@ export class TodoListComponent {
     @Output() public itemDeleted = new EventEmitter<ITodoItem>();
 
     public editableItem: ITodoItem;
+    private _shareUrl: string;
+
+    constructor(private _shareService: ShareService, private _notificationService: NotificationService, _windowRef: WindowRef) {
+        this._shareUrl = _windowRef.nativeWindow.location.href;
+    }
 
     public changeItem(item: ITodoItem, completed: boolean): void {
         item.completed = completed;
@@ -36,6 +44,15 @@ export class TodoListComponent {
             this.editableItem = null;
             this.itemChanged.emit(this.items[itemIndex]);
         }
+    }
+
+    public shareItem(item: ITodoItem): void {
+        this._shareService.share('New Todo!', item.text, this._shareUrl)
+            .subscribe(success => {
+                if (!success) {
+                    this._notificationService.showNotification('Error!', 'Sharing Todo item failed!');
+                }
+            })
     }
 }
 

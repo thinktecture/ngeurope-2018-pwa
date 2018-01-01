@@ -12,6 +12,7 @@
             </label>
         </div>
         <div class="read" *ngIf="editableItem?.id !== item.id">
+            <i class="fa fa-share-alt" (click)="shareItem(item)"></i>
             <i class="fa fa-pencil" (click)="editItem(item)"></i>
             <i class="fa fa-trash" (click)="deleteItem(item)"></i>
         </div>
