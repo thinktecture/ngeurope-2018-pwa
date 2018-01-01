@@ -1,35 +1,45 @@
 import {Injectable} from '@angular/core';
-import {BrowserFeature} from '../models/browserFeature.model';
 import {WindowRef} from './windowRef';
+import {BrowserFeatureKey} from '../models/browserFeatureKey.model';
+import {BrowserFeature} from '../models/browserFeature.model';
 
 @Injectable()
 export class FeatureService {
     private _window: Window;
     private _nav: Navigator;
 
+    private _features: any;
+
     constructor(windowRef: WindowRef) {
         this._window = windowRef.nativeWindow;
         this._nav = this._window.navigator;
+
+        this._features = {
+            [BrowserFeatureKey.Cache]: 'caches' in this._window,
+            [BrowserFeatureKey.PushAPI]: 'PushManager' in this._window,
+            [BrowserFeatureKey.NotificationsAPI]: 'Notification' in this._window,
+            [BrowserFeatureKey.BeforeInstallPromptEvent]: 'BeforeInstallPromptEvent' in this._window,
+            [BrowserFeatureKey.BackgroundSync]: 'SyncManager' in this._window,
+            [BrowserFeatureKey.NavigationPreloadManager]: 'NavigationPreloadManager' in this._window,
+            [BrowserFeatureKey.BudgetAPI]: 'budget' in this._nav && 'reserve' in (<any>this._nav).budget,
+            [BrowserFeatureKey.StorageEstimation]: 'storage' in this._nav && 'estimate' in (<any>this._nav).storage,
+            [BrowserFeatureKey.PersistentStorage]: 'storage' in this._nav && 'persist' in (<any>this._nav).storage,
+            [BrowserFeatureKey.WebShareAPI]: 'share' in this._nav,
+            [BrowserFeatureKey.MediaSessionAPI]: 'mediaSession' in this._nav,
+            [BrowserFeatureKey.MediaCapabilities]: 'mediaCapabilities' in this._nav,
+            [BrowserFeatureKey.DeviceMemory]: 'deviceMemory' in this._nav,
+            [BrowserFeatureKey.RelatedApps]: 'getInstalledRelatedApps' in this._nav,
+            [BrowserFeatureKey.PaymentRequestAPI]: 'PaymentRequest' in this._window,
+            [BrowserFeatureKey.CredentialManagement]: 'credentials' in this._nav,
+            [BrowserFeatureKey.WebBluetoothAPI]: 'bluetooth' in this._nav,
+        };
     }
 
     public detectFeatures(): Array<BrowserFeature> {
-        return [
-            new BrowserFeature('Offline Capabilities', 'caches' in this._window),
-            new BrowserFeature('Push', 'PushManager' in this._window),
-            new BrowserFeature('Notifications', 'Notification' in this._window),
-            new BrowserFeature('Add to Homescreen', 'BeforeInstallPromptEvent' in this._window),
-            new BrowserFeature('Background sync', 'SyncManager' in this._window),
-            new BrowserFeature('Navigation Preload', 'NavigationPreloadManager' in this._window),
-            new BrowserFeature('Budget API', 'budget' in this._nav && 'reserve' in (<any>this._nav).budget),
-            new BrowserFeature('Storage Estimation', 'storage' in this._nav && 'estimate' in (<any>this._nav).storage),
-            new BrowserFeature('Persistent Storage', 'storage' in this._nav && 'persist' in (<any>this._nav).storage),
-            new BrowserFeature('Web Share', 'share' in this._nav),
-            new BrowserFeature('Media Session', 'mediaSession' in this._nav),
-            new BrowserFeature('Media Capibilities', 'mediaCapabilities' in this._nav),
-            new BrowserFeature('Device Memory', 'deviceMemory' in this._nav),
-            new BrowserFeature('Getting Installed Related Apps', 'getInstalledRelatedApps' in this._nav),
-            new BrowserFeature('Payment Request', 'PaymentRequest' in this._window),
-            new BrowserFeature('Credential Management', 'credentials' in this._nav)
-        ];
+        return Object.keys(this._features).map(key => new BrowserFeature(key, this._features[key]));
+    }
+
+    public detectFeature(feature: BrowserFeatureKey): BrowserFeature {
+        return new BrowserFeature(feature, this._features[feature]);
     }
 }
