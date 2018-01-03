@@ -33,6 +33,9 @@ export class TodoService {
     }
 
     public overwrite(list: Array<ITodoItem>): Promise<Array<ITodoItem>> {
+        // Delete IDs to prevent duplicate key
+        list.forEach(item => delete item.id);
+
         return this.table.clear()
             .then(() => this.table.bulkAdd(list))
             .then(() => this.getAll(false));
