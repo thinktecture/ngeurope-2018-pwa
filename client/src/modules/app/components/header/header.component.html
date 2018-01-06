@@ -1,7 +1,6 @@
-<button class="back-chevron" (click)="goBack()" *ngIf="isBackChevronVisible"><i class="fa fa-chevron-left"></i></button>
-
-<span class="brand">PWA @ ngEurope</span>
-
-<app-menu> </app-menu>
-
-<img src="assets/logo.svg" class="brand-logo" alt="Thinktecture Logo"/>
+<div class="tt__app-bar">
+    <h1>
+        {{title}}
+    </h1>
+    <div class="logo" [routerLink]="['/']"></div>
+</div>

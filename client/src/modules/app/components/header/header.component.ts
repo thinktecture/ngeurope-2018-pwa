@@ -1,22 +1,30 @@
-import { Location } from '@angular/common';
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: 'header.component.html',
-  styleUrls: ['header.component.scss']
+    selector: 'app-header',
+    templateUrl: 'header.component.html',
 })
-export class HeaderComponent {
-  constructor(private _location: Location, private _route: ActivatedRoute) {
-  }
+export class HeaderComponent implements OnInit {
+    public title: string;
 
-  public get isBackChevronVisible(): boolean {
-    // TODO: to be extended to only show the button on iOS
-    return this._location.path() !== '/home';
-  }
+    constructor(private _router: Router, private _route: ActivatedRoute) {
+    }
 
-  public goBack() {
-    this._location.back();
-  }
+    public ngOnInit():void {
+        this._router.events
+            .filter((event) => event instanceof NavigationEnd)
+            .map(() => this._route)
+            .map((route) => {
+                while (route.firstChild) route = route.firstChild;
+                return route;
+            })
+            .mergeMap((route) => route.data)
+            .subscribe((event) => {
+                this.title = event.title;
+            });
+    }
 }

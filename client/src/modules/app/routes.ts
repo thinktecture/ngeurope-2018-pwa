@@ -10,6 +10,9 @@ export const ROUTES: Routes = [
     {
         path: 'home',
         component: HomeComponent,
+        data: {
+            title: 'PWA @ ngEurope',
+        },
     },
     {
         path: 'info',

@@ -1,8 +1,0 @@
-<form #addForm="ngForm" (ngSubmit)="addItem()">
-    <div class="form-group">
-        <label>
-            <input type="text" [(ngModel)]="item.text" name="addTodoListItem@" required aria-label="Item text">
-        </label>
-    </div>
-    <button [disabled]="!addForm.form.valid" (click)="addItem()" aria-label="Add"><i class="fa fa-plus-circle"></i></button>
-</form>

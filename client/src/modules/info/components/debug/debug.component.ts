@@ -5,7 +5,6 @@ import {PushNotificationService} from '../../../shared/services/pushNotification
 
 @Component({
     templateUrl: 'debug.component.html',
-    styleUrls: ['debug.component.scss']
 })
 export class DebugComponent {
     private _window: Window;

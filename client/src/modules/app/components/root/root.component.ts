@@ -5,7 +5,6 @@ import {PushNotificationService} from '../../../shared/services/pushNotification
 @Component({
     selector: 'app-root',
     templateUrl: 'root.component.html',
-    styleUrls: ['root.component.scss']
 })
 export class RootComponent implements OnInit, OnDestroy {
     constructor(private _pushNotificationService: PushNotificationService, private _updateService: UpdateService) {

@@ -12,12 +12,21 @@ export const INFO_ROUTES: Routes = [
     {
         path: 'about',
         component: AboutComponent,
+        data: {
+            title: 'About',
+        },
     }, {
         path: 'debug',
         component: DebugComponent,
+        data: {
+            title: 'Debug',
+        }
     },
     {
         path: 'features',
         component: FeaturesComponent,
+        data: {
+            title: 'Features',
+        },
     }
 ];

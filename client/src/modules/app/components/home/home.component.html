@@ -1,5 +1,13 @@
-<h1>Your TODOs</h1>
+<div class="tt__card">
+    <header>
+        <h1>Your TODOs</h1>
+        <button (click)="sync()">Sync</button>
+    </header>
+    <div class="content">
+        <todo-list #list [items]="items" (itemChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>
+    </div>
 
-<todo-list-add (itemAdded)="addItem($event)"></todo-list-add>
-<todo-list [items]="items" (itemChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>
-<float-button icon="fa-refresh" (clicked)="sync()"></float-button>
+    <button class="tt__fab" (click)="createItem()">
+        add
+    </button>
+</div>

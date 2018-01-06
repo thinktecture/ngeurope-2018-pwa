@@ -13,7 +13,7 @@ export class TodoService {
         if (includeDeleted) {
             return this.table.toArray();
         }
-        return this.table.filter(item => !item.deleted).toArray();
+        return this.table.filter(item => !item.deleted).reverse().toArray();
     }
 
     public add(item: ITodoItem): Promise<number> {

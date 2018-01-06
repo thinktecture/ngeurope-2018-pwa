@@ -1,12 +1,10 @@
-<h2>Features</h2>
-
-<ul class="list">
-    <li *ngFor="let feature of features; let i = index">
-        <div class="form-group">
-            <input type="checkbox" [ngModel]="feature.supported" [id]="i">
-            <label [for]="i">
-                {{feature.key}}
-            </label>
+<div class="tt__card">
+    <div class="content">
+        <div class="tt__form">
+            <div class="tt__toggle" *ngFor="let feature of features; let i = index">
+                <label [for]="i">{{ feature.key }}</label>
+                <input type="checkbox" [ngModel]="feature.supported" [id]="i" disabled>
+            </div>
         </div>
-    </li>
-</ul>
+    </div>
+</div>

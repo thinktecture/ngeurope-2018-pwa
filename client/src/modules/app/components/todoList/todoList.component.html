@@ -1,24 +1,24 @@
-<ul class="list">
-    <li *ngFor="let item of items; let itemIndex = index">
-        <div class="form-group">
-            <input type="checkbox" [ngModel]="item.completed" [id]="item.id"
-                   (ngModelChange)="changeItem(item,$event)">
-            <label [for]="item.id">
-                <span *ngIf="editableItem?.id !== item.id">{{item.text}}</span>
-                <form (ngSubmit)="saveItem(itemIndex)">
-                    <input type="text" [name]="item.id" *ngIf="editableItem?.id === item.id"
-                           [(ngModel)]="editableItem.text" focusOnInit (escapeKey)="cancelEdit()">
-                </form>
-            </label>
-        </div>
-        <div class="read" *ngIf="editableItem?.id !== item.id">
-            <i class="fa fa-share-alt" (click)="shareItem(item)"></i>
-            <i class="fa fa-pencil" (click)="editItem(item)"></i>
-            <i class="fa fa-trash" (click)="deleteItem(item)"></i>
-        </div>
-        <div class="edit" *ngIf="editableItem?.id === item.id">
-            <i class="fa fa-times" (click)="cancelEdit()"></i>
-            <i class="fa fa-check" (click)="saveItem(itemIndex)"></i>
-        </div>
-    </li>
-</ul>
+<form (keyup)="handleKey($event)" (escapeKey)="cancel()">
+    <ul class="tt__list table-view" [class.edit-mode]="activeItemIndex >= 0">
+        <li *ngFor="let item of items; let i = index; trackBy: trackByFn" [class.edit]="i === activeItemIndex"
+            (outsideClick)="leaveEditField(i)">
+            <div class="tt__input tt__input--checkbox">
+                <input type="checkbox" [ngModel]="item.completed" [id]="'checkbox_' + i"
+                       (ngModelChange)="changeItemCompleted(item,$event)" [name]="'checkbox_' + i">
+            </div>
+            <div class="tt__input tt__input--text">
+                <input type="text" #text [(ngModel)]="item.text" (focus)="enterEditFieldByIndex(i)"
+                       (blur)="saveItem(item)"
+                       [name]="'input_' + i">
+            </div>
+            <div class="actions" *ngIf="activeItemIndex === i">
+                <button type="button" class="icon" (click)="shareItem(item)">
+                    <i class="material-icons">share</i>
+                </button>
+                <button type="button" class="icon" (click)="deleteItem(item)">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>
+        </li>
+    </ul>
+</form>
