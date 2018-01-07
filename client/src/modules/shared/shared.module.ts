@@ -3,14 +3,19 @@ import {SHARED_SERVICES} from './services';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {SHARED_COMPONENTS} from './components';
 
 @NgModule({
+    declarations: [
+        ...SHARED_COMPONENTS,
+    ],
     imports: [
         HttpClientModule,
         FormsModule,
         CommonModule,
     ],
     exports: [
+        SHARED_COMPONENTS,
         HttpClientModule,
         FormsModule,
         CommonModule,

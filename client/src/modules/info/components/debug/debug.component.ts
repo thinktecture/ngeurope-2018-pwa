@@ -2,9 +2,11 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {WindowRef} from '../../../shared/services/windowRef';
 import {TodoService} from '../../../shared/services/base/todo.service';
 import {PushNotificationService} from '../../../shared/services/pushNotification.service';
+import {NotificationService} from '../../../shared/services/notification.service';
 
 @Component({
     templateUrl: 'debug.component.html',
+    styleUrls: ['debug.component.scss']
 })
 export class DebugComponent {
     private _window: Window;
@@ -13,7 +15,8 @@ export class DebugComponent {
     public info: ElementRef;
     public debugInfo = '';
 
-    constructor(windowRef: WindowRef, private _todoService: TodoService, private _pushNotificationService: PushNotificationService) {
+    constructor(windowRef: WindowRef, private _todoService: TodoService, private _pushNotificationService: PushNotificationService,
+                private _notificationService: NotificationService) {
         this._window = windowRef.nativeWindow;
     }
 
@@ -42,6 +45,10 @@ export class DebugComponent {
 
     public clearInfo(): void {
         this.debugInfo = '';
+    }
+
+    public showTestNotification(): void {
+        this._notificationService.showNotification('ngEurope 2018 Workshop', 'Hello audience! Nice to meet you!');
     }
 
     private _addDebugInfo(info: string) {

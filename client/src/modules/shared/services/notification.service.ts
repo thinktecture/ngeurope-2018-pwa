@@ -1,9 +1,17 @@
-import {Observable} from 'rxjs/Observable';
+import {FeatureService} from './feature.service';
+import {Subject} from 'rxjs/Subject';
+import {Notification} from '../models/notification.model';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class NotificationService {
-    public showNotification(title: string, text: string): Observable<boolean> {
+    public notifications = new Subject<Notification>();
 
-        console.log(`${title}:${text}`);
-        return Observable.of(true);
+    constructor(private _featureService: FeatureService) {
+
+    }
+
+    public showNotification(title: string, text: string): void {
+        this.notifications.next(new Notification(title, text));
     }
 }
