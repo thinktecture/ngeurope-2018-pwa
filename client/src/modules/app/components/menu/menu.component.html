@@ -6,21 +6,21 @@
     </button>
     <nav id="navigation" [class.active]="isOpen">
         <ul>
-            <li routerLinkActive="active">
+            <li routerLinkActive="active" [routerLink]="['/home']" (click)="close()">
                 <i class="material-icons">home</i>
-                <a [routerLink]="['/home']" (click)="close()">Home</a>
+                <a>Home</a>
             </li>
-            <li routerLinkActive="active">
+            <li routerLinkActive="active" [routerLink]="['/info/features']" (click)="close()">
                 <i class="material-icons">check_circle</i>
-                <a [routerLink]="['/info/features']" (click)="close()">Features</a>
+                <a>Features</a>
             </li>
-            <li routerLinkActive="active">
+            <li routerLinkActive="active" [routerLink]="['/info/debug']" (click)="close()">
                 <i class="material-icons">bug_report</i>
-                <a [routerLink]="['/info/debug']" (click)="close()">Debug</a>
+                <a>Debug</a>
             </li>
-            <li routerLinkActive="active">
+            <li routerLinkActive="active" [routerLink]="['/info/about']" (click)="close()">
                 <i class="material-icons">perm_contact_calendar</i>
-                <a [routerLink]="['/info/about']" (click)="close()">About</a>
+                <a>About</a>
             </li>
         </ul>
     </nav>
