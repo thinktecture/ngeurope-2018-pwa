@@ -16,10 +16,6 @@ export class UpdateService {
     public register(): void {
         this._subscription = this._swUpdate.available.subscribe(event => {
                 this._notificationService.showNotification('Update available!', 'Please reload to update the application');
-
-                console.log('Update available:');
-                console.log('Current version: ', event.current.hash);
-                console.log('Available version: ', event.available.hash);
             }
         );
     }
