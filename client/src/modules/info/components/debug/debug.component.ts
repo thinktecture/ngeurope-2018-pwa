@@ -3,6 +3,7 @@ import {WindowRef} from '../../../shared/services/windowRef';
 import {TodoService} from '../../../shared/services/base/todo.service';
 import {PushNotificationService} from '../../../shared/services/pushNotification.service';
 import {NotificationService} from '../../../shared/services/notification.service';
+import {ApiService} from '../../../shared/services/base/api.service';
 
 @Component({
     templateUrl: 'debug.component.html',
@@ -16,7 +17,7 @@ export class DebugComponent {
     public debugInfo = '';
 
     constructor(windowRef: WindowRef, private _todoService: TodoService, private _pushNotificationService: PushNotificationService,
-                private _notificationService: NotificationService) {
+                private _notificationService: NotificationService, private _apiService: ApiService) {
         this._window = windowRef.nativeWindow;
     }
 
@@ -49,6 +50,13 @@ export class DebugComponent {
 
     public showTestNotification(): void {
         this._notificationService.showNotification('ngEurope 2018 Workshop', 'Hello audience! Nice to meet you!');
+    }
+
+    public sendPushNotification(): void {
+        this._apiService.post('push/notifyAll', {
+            title: 'Push Notification',
+            body: 'This is a push notification!'
+        }).subscribe();
     }
 
     private _addDebugInfo(info: string) {
