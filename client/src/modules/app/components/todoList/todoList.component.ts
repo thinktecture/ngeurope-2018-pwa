@@ -69,16 +69,18 @@ export class TodoListComponent {
     }
 
     public cancel(): void {
-        if (this._itemCopy.text) {
-            this.items[this.activeItemIndex] = this._itemCopy;
-        } else {
-            this.deleteItem(this.items[this.activeItemIndex]);
-        }
-        this.inputFields.forEach((item, itemIndex) => {
-            if (itemIndex === this.activeItemIndex) {
-                item.nativeElement.blur();
+        if (this.activeItemIndex >= 0) {
+            if (this._itemCopy.text) {
+                this.items[this.activeItemIndex] = this._itemCopy;
+            } else {
+                this.deleteItem(this.items[this.activeItemIndex]);
             }
-        });
+            this.inputFields.forEach((item, itemIndex) => {
+                if (itemIndex === this.activeItemIndex) {
+                    item.nativeElement.blur();
+                }
+            });
+        }
     }
 
     public handleKey(event) {
