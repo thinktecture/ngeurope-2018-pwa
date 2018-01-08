@@ -30,16 +30,15 @@ export class TodoListComponent {
     }
 
     public saveItem(item: ITodoItem): void {
-        if (item.text) {
-            this.itemChanged.emit(item);
-        } else {
-            this.deleteItem(item);
-        }
-
+        this.itemChanged.emit(item);
     }
 
     public deleteItem(item: ITodoItem): void {
+        this._deleteItem(item);
         this.activeItemIndex = -1;
+    }
+
+    private _deleteItem(item: ITodoItem): void {
         this.itemDeleted.emit(item);
     }
 
@@ -54,55 +53,73 @@ export class TodoListComponent {
         }
     }
 
-    public setEditModeForItemByIndex(itemIndex: number) {
-        this.inputFields.forEach((item, index) => {
-            if (index === itemIndex) {
-                item.nativeElement.focus();
-            }
-        });
+    public focusItem(item: ITodoItem, index: number): void {
+        this.activeItemIndex = index;
+        this._isNewItem = !item.text;
+        this._itemCopy = Object.assign({}, item);
     }
 
-    public enterEditFieldByIndex(itemIndex: number): void {
-        this.activeItemIndex = itemIndex;
-        this._isNewItem = !this.items[itemIndex].text;
-        this._itemCopy = Object.assign({}, this.items[itemIndex]);
-    }
-
-    public leaveEditField(itemIndex: number): void {
-        if (this.activeItemIndex === itemIndex && !this._isNewItem) {
-            const item = this.items[itemIndex];
-            this.saveItem(item);
-            this.activeItemIndex = -1;
-        }
-    }
-
-    public cancel(): void {
-        if (this.activeItemIndex >= 0) {
-            if (this._itemCopy.text) {
-                this.items[this.activeItemIndex] = this._itemCopy;
-            } else {
-                this.deleteItem(this.items[this.activeItemIndex]);
-            }
-            this.inputFields.forEach((item, itemIndex) => {
-                if (itemIndex === this.activeItemIndex) {
-                    item.nativeElement.blur();
+    public activateItem(itemToActivate: ITodoItem): void {
+        const index = this.items.findIndex(item => item === itemToActivate);
+        if (index >= 0) {
+            this.inputFields.forEach((inputField, itemIndex) => {
+                if (itemIndex === index) {
+                    inputField.nativeElement.focus();
                 }
             });
         }
     }
 
-    public handleKey(event) {
-        if (event.keyCode === 13) { // Enter
-            const activeItemIndex = this.activeItemIndex;
-            if (!this.items[this.activeItemIndex].text) {
-                this.deleteItem(this.items[this.activeItemIndex]);
+    public leaveEditMode(itemIndex: number): void {
+        if (this.activeItemIndex === itemIndex) {
+            const item = this.items[itemIndex];
+            if (this._isNewItem && !item.text) {
+                this._isNewItem = false;
+                return;
             }
             this._isNewItem = false;
+            if (this._itemCopy.text) {
+                if (item.text) {
+                    this.saveItem(item);
+                } else {
+                    this.items[this.activeItemIndex] = this._itemCopy;
+                }
+            } else {
+                this._deleteItem(this.items[this.activeItemIndex]);
+            }
+            this.activeItemIndex = -1;
+        }
+    }
+
+    public cancel(): void {
+        const activeItem = this.items[this.activeItemIndex];
+        this.inputFields.forEach((inputField, itemIndex) => {
+            if (itemIndex === this.activeItemIndex) {
+                inputField.nativeElement.blur();
+            }
+        });
+        if (this._itemCopy.text) {
+            this.items[this.activeItemIndex] = this._itemCopy;
+        } else {
+            this._deleteItem(activeItem);
+        }
+
+        this.activeItemIndex = -1;
+    }
+
+    public handleKey(event) {
+        if (event.keyCode === 13) { // Enter
+            const item = this.items[this.activeItemIndex];
+            if (!item.text) {
+                this._deleteItem(this.items[this.activeItemIndex]);
+            } else {
+                this.saveItem(item);
+            }
             this.inputFields.forEach((item, itemIndex) => {
-                if (itemIndex === activeItemIndex) {
+                if (itemIndex === this.activeItemIndex) {
                     item.nativeElement.blur();
                     this.activeItemIndex = -1;
-                    return
+                    return;
                 }
             });
         }

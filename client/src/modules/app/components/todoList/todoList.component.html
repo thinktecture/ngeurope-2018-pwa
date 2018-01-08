@@ -1,16 +1,15 @@
 <form (keyup)="handleKey($event)" (escapeKey)="cancel()">
     <ul class="tt__list table-view" [class.edit-mode]="activeItemIndex >= 0">
         <li *ngFor="let item of items; let i = index; trackBy: trackByFn" [class.edit]="i === activeItemIndex"
-            (outsideClick)="leaveEditField(i)">
+            (outsideClick)="leaveEditMode(i)">
             <div class="tt__input tt__input--checkbox">
                 <input type="checkbox" [ngModel]="item.completed" [id]="'checkbox_' + i"
                        (ngModelChange)="changeItemCompleted(item,$event)" [name]="'checkbox_' + i"
                        [disabled]="activeItemIndex >= 0 && activeItemIndex !== i">
             </div>
             <div class="tt__input tt__input--text">
-                <input type="text" #text [(ngModel)]="item.text" (focus)="enterEditFieldByIndex(i)"
-                       (blur)="saveItem(item)"
-                       [name]="'input_' + i">
+                <input type="text" #text [(ngModel)]="item.text" [name]="'input_' + i"
+                       (focus)="focusItem(item, i)">
             </div>
             <div class="actions" *ngIf="activeItemIndex === i">
                 <button type="button" class="icon" (click)="shareItem(item)" [class.disabled]="!item.syncId">

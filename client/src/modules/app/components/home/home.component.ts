@@ -45,9 +45,10 @@ export class HomeComponent implements OnInit {
     }
 
     public createItem(): void {
-        this.items.unshift(new TodoItem());
+        const item = new TodoItem();
+        this.items.unshift(item);
         this._changeDetectorRef.detectChanges();
-        this.list.setEditModeForItemByIndex(0);
+        this.list.activateItem(item);
     }
 
     public sync(): void {
