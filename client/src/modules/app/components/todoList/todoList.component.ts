@@ -93,12 +93,13 @@ export class TodoListComponent {
 
     public handleKey(event) {
         if (event.keyCode === 13) { // Enter
+            const activeItemIndex = this.activeItemIndex;
             if (!this.items[this.activeItemIndex].text) {
                 this.deleteItem(this.items[this.activeItemIndex]);
             }
             this._isNewItem = false;
             this.inputFields.forEach((item, itemIndex) => {
-                if (itemIndex === this.activeItemIndex) {
+                if (itemIndex === activeItemIndex) {
                     item.nativeElement.blur();
                     this.activeItemIndex = -1;
                     return
