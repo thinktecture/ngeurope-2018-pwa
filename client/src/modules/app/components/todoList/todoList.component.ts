@@ -30,7 +30,12 @@ export class TodoListComponent {
     }
 
     public saveItem(item: ITodoItem): void {
-        this.itemChanged.emit(item);
+        if (item.text) {
+            this.itemChanged.emit(item);
+        } else {
+            this.deleteItem(item);
+        }
+
     }
 
     public deleteItem(item: ITodoItem): void {
@@ -39,7 +44,7 @@ export class TodoListComponent {
     }
 
     public shareItem(item: ITodoItem): void {
-        if(item.syncId){
+        if (item.syncId) {
             this._shareService.share('New Todo!', item.text, this._shareUrl)
                 .subscribe(success => {
                     if (!success) {
