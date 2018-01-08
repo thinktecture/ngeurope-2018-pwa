@@ -2,3 +2,11 @@ ng-component {
     display: flex;
     flex: 1;
 }
+
+.tt__list {
+    .actions {
+        .disabled {
+            color: #6C6C6C;
+        }
+    }
+}

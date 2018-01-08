@@ -34,16 +34,19 @@ export class TodoListComponent {
     }
 
     public deleteItem(item: ITodoItem): void {
+        this.activeItemIndex = -1;
         this.itemDeleted.emit(item);
     }
 
     public shareItem(item: ITodoItem): void {
-        this._shareService.share('New Todo!', item.text, this._shareUrl)
-            .subscribe(success => {
-                if (!success) {
-                    this._notificationService.showNotification('Error!', 'Sharing Todo item failed!');
-                }
-            })
+        if(item.syncId){
+            this._shareService.share('New Todo!', item.text, this._shareUrl)
+                .subscribe(success => {
+                    if (!success) {
+                        this._notificationService.showNotification('Error!', 'Sharing Todo item failed!');
+                    }
+                })
+        }
     }
 
     public setEditModeForItemByIndex(itemIndex: number) {
