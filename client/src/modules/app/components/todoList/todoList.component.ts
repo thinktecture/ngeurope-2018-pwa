@@ -80,14 +80,14 @@ export class TodoListComponent {
     public addNewItem(): void {
         const newItem = new TodoItem();
         if (this.activeItemIndex >= 0) {
-            this.leaveEditMode(this.activeItemIndex);
+            this.leaveEditMode(this.activeItemIndex, true);
         }
         this.items.unshift(newItem);
         this._changeDetectorRef.detectChanges(); // Refresh ViewChildren
         this.activateItem(newItem);
     }
 
-    public leaveEditMode(itemIndex: number): void {
+    public leaveEditMode(itemIndex: number, blurInputField: boolean): void {
         if (this.activeItemIndex === itemIndex) {
             const item = this.items[itemIndex];
             // Necessary because FAB is an outsideclick
@@ -110,7 +110,10 @@ export class TodoListComponent {
                 }
             }
 
-            this._blurInputField(itemIndex);
+            if (blurInputField) {
+                this._blurInputField(itemIndex);
+            }
+
             this.activeItemIndex = -1;
         }
     }
