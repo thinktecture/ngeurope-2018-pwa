@@ -115,14 +115,14 @@ export class TodoListComponent {
 
     public cancel(): void {
         const activeItem = this.items[this.activeItemIndex];
-        this._blurInputField(this.activeItemIndex);
         if (this._itemCopy.text) {
             this.items[this.activeItemIndex] = this._itemCopy;
         } else {
             this._deleteItem(activeItem);
-        }
 
+        }
         this.activeItemIndex = -1;
+        this._blurAllFields(); // List has changed and blur is necessary
     }
 
     public handleKey(event) {
@@ -149,6 +149,12 @@ export class TodoListComponent {
             if (fieldIndex === index) {
                 field.nativeElement.blur();
             }
+        });
+    }
+
+    private _blurAllFields(): void {
+        this.inputFields.forEach((field) => {
+            field.nativeElement.blur();
         });
     }
 }
