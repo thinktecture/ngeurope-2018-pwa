@@ -1,8 +1,7 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TodoService} from '../../../shared/services/base/todo.service';
 import {ITodoItem} from '../../../shared/models/contracts/todoItem.interface';
 import {SyncService} from '../../../shared/services/base/sync.service';
-import {TodoItem} from '../../../shared/models/todoItem.model';
 import {TodoListComponent} from '../todoList/todoList.component';
 
 @Component({
@@ -13,7 +12,7 @@ export class HomeComponent implements OnInit {
 
     public items: Array<ITodoItem>;
 
-    constructor(private _todoService: TodoService, private _syncService: SyncService, private _changeDetectorRef: ChangeDetectorRef) {
+    constructor(private _todoService: TodoService, private _syncService: SyncService) {
     }
 
     public ngOnInit(): void {
@@ -45,10 +44,7 @@ export class HomeComponent implements OnInit {
     }
 
     public createItem(): void {
-        const item = new TodoItem();
-        this.items.unshift(item);
-        this._changeDetectorRef.detectChanges();
-        this.list.activateItem(item);
+        this.list.addNewItem();
     }
 
     public sync(): void {

@@ -1,8 +1,9 @@
-import {Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren} from '@angular/core';
 import {ITodoItem} from '../../../shared/models/contracts/todoItem.interface';
 import {ShareService} from '../../../shared/services/share.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {WindowRef} from '../../../shared/services/windowRef';
+import {TodoItem} from '../../../shared/models/todoItem.model';
 
 @Component({
     selector: 'todo-list',
@@ -18,9 +19,10 @@ export class TodoListComponent {
 
     private _shareUrl: string;
     private _itemCopy: ITodoItem;
-    private _isNewItem: boolean;
+    private _hasDirtyItem: boolean;
 
-    constructor(private _shareService: ShareService, private _notificationService: NotificationService, _windowRef: WindowRef) {
+    constructor(private _shareService: ShareService, private _notificationService: NotificationService, _windowRef: WindowRef,
+                private _changeDetectorRef: ChangeDetectorRef) {
         this._shareUrl = _windowRef.nativeWindow.location.href;
     }
 
@@ -53,9 +55,14 @@ export class TodoListComponent {
         }
     }
 
-    public focusItem(item: ITodoItem, index: number): void {
+    public onFocusItem(item: ITodoItem, index: number): void {
+        if (this.activeItemIndex >= 0) {
+            // Save old item. Needed if focus through touch/click
+            this.leaveEditMode(this.activeItemIndex);
+        }
+
         this.activeItemIndex = index;
-        this._isNewItem = !item.text;
+        this._hasDirtyItem = !item.text;
         this._itemCopy = Object.assign({}, item);
     }
 
@@ -70,40 +77,47 @@ export class TodoListComponent {
         }
     }
 
+    public addNewItem(): void {
+        const newItem = new TodoItem();
+        if (this.activeItemIndex >= 0) {
+            this.leaveEditMode(this.activeItemIndex);
+        }
+        this.items.unshift(newItem);
+        this._changeDetectorRef.detectChanges(); // Refresh ViewChildren
+        this.activateItem(newItem);
+    }
+
     public leaveEditMode(itemIndex: number): void {
         if (this.activeItemIndex === itemIndex) {
             const item = this.items[itemIndex];
-            if (this._isNewItem && !item.text) {
-                this._isNewItem = false;
+            // Necessary because FAB is an outsideclick
+            if (this._hasDirtyItem && !item.text) {
+                this._hasDirtyItem = false;
                 return;
             }
-            this._isNewItem = false;
+            this._hasDirtyItem = false;
             if (this._itemCopy.text) {
                 if (item.text) {
                     this.saveItem(item);
                 } else {
-                    this.items[this.activeItemIndex] = this._itemCopy;
+                    this.items[itemIndex] = this._itemCopy;
                 }
             } else {
-                this._deleteItem(this.items[this.activeItemIndex]);
+                if (item.text) {
+                    this.saveItem(item);
+                } else {
+                    this._deleteItem(this.items[itemIndex]);
+                }
             }
 
-            this.inputFields.forEach((field, fieldIndex) => {
-                if(fieldIndex === this.activeItemIndex){
-                    field.nativeElement.blur();
-                }
-            });
+            this._blurInputField(itemIndex);
             this.activeItemIndex = -1;
         }
     }
 
     public cancel(): void {
         const activeItem = this.items[this.activeItemIndex];
-        this.inputFields.forEach((inputField, itemIndex) => {
-            if (itemIndex === this.activeItemIndex) {
-                inputField.nativeElement.blur();
-            }
-        });
+        this._blurInputField(this.activeItemIndex);
         if (this._itemCopy.text) {
             this.items[this.activeItemIndex] = this._itemCopy;
         } else {
@@ -121,16 +135,19 @@ export class TodoListComponent {
             } else {
                 this.saveItem(item);
             }
-            this.inputFields.forEach((item, itemIndex) => {
-                if (itemIndex === this.activeItemIndex) {
-                    item.nativeElement.blur();
-                    this.activeItemIndex = -1;
-                    return;
-                }
-            });
+            this._blurInputField(this.activeItemIndex);
+            this.activeItemIndex = -1;
         }
     }
 
     public readonly trackByFn = index => index;
+
+    private _blurInputField(index: number) {
+        this.inputFields.forEach((field, fieldIndex) => {
+            if (fieldIndex === index) {
+                field.nativeElement.blur();
+            }
+        });
+    }
 }
 

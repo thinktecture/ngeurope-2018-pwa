@@ -9,7 +9,7 @@
             </div>
             <div class="tt__input tt__input--text">
                 <input type="text" #text [(ngModel)]="item.text" [name]="'input_' + i"
-                       (focus)="focusItem(item, i)">
+                       (focus)="onFocusItem(item, i)">
             </div>
             <div class="actions" *ngIf="activeItemIndex === i">
                 <button type="button" class="icon" (click)="shareItem(item)" [class.disabled]="!item.syncId">
