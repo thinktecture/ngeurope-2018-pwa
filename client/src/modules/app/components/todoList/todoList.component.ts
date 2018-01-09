@@ -87,6 +87,12 @@ export class TodoListComponent {
             } else {
                 this._deleteItem(this.items[this.activeItemIndex]);
             }
+
+            this.inputFields.forEach((field, fieldIndex) => {
+                if(fieldIndex === this.activeItemIndex){
+                    field.nativeElement.blur();
+                }
+            });
             this.activeItemIndex = -1;
         }
     }
