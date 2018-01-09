@@ -56,11 +56,6 @@ export class TodoListComponent {
     }
 
     public onFocusItem(item: ITodoItem, index: number): void {
-        if (this.activeItemIndex >= 0) {
-            // Save old item. Needed if focus through touch/click
-            this.leaveEditMode(this.activeItemIndex);
-        }
-
         this.activeItemIndex = index;
         this._hasDirtyItem = !item.text;
         this._itemCopy = Object.assign({}, item);
