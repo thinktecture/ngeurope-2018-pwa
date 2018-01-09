@@ -85,6 +85,8 @@
       li {
         list-style: none;
 
+          &:focus { outline: none; }
+
         &.active, &:hover {
           a { color: $brand-color; }
         }
@@ -98,7 +100,7 @@
           color: $text-color-darker;
           text-decoration: none;
 
-          &:focus { outline: none; }
+
         }
       }
     }
