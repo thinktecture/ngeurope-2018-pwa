@@ -19,7 +19,7 @@ export class TodoListComponent {
 
     private _shareUrl: string;
     private _itemCopy: ITodoItem;
-    private _hasDirtyItem: boolean;
+    private _hasNewItem: boolean;
 
     constructor(private _shareService: ShareService, private _notificationService: NotificationService, _windowRef: WindowRef,
                 private _changeDetectorRef: ChangeDetectorRef) {
@@ -57,7 +57,7 @@ export class TodoListComponent {
 
     public onFocusItem(item: ITodoItem, index: number): void {
         this.activeItemIndex = index;
-        this._hasDirtyItem = !item.text;
+        this._hasNewItem = !item.text;
         this._itemCopy = Object.assign({}, item);
     }
 
@@ -86,11 +86,11 @@ export class TodoListComponent {
         if (this.activeItemIndex === itemIndex) {
             const item = this.items[itemIndex];
             // Necessary because FAB is an outsideclick
-            if (this._hasDirtyItem && !item.text) {
-                this._hasDirtyItem = false;
+            if (this._hasNewItem && !item.text) {
+                this._hasNewItem = false;
                 return;
             }
-            this._hasDirtyItem = false;
+            this._hasNewItem = false;
             if (this._itemCopy.text) {
                 if (item.text) {
                     this.saveItem(item);
@@ -108,8 +108,6 @@ export class TodoListComponent {
             if (blurInputField) {
                 this._blurInputField(itemIndex);
             }
-
-            this.activeItemIndex = -1;
         }
     }
 
@@ -139,6 +137,14 @@ export class TodoListComponent {
             }
             this._blurInputField(this.activeItemIndex);
             this.activeItemIndex = -1;
+        }
+    }
+
+    public leaveList() {
+        if (!this._hasNewItem && this.activeItemIndex >= 0) {
+            this.leaveEditMode(this.activeItemIndex, false);
+            this.activeItemIndex = -1;
+            this._blurAllFields();
         }
     }
 
