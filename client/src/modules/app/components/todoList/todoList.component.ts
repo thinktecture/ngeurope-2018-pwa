@@ -134,7 +134,11 @@ export class TodoListComponent {
         if (event.keyCode === 13) { // Enter
             const item = this.items[this.activeItemIndex];
             if (!item.text) {
-                this._deleteItem(this.items[this.activeItemIndex]);
+                if (this._itemCopy.text) {
+                    this.items[this.activeItemIndex] = this._itemCopy;
+                } else {
+                    this._deleteItem(this.items[this.activeItemIndex]);
+                }
             } else {
                 this.saveItem(item);
             }
