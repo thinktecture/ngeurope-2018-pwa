@@ -12,6 +12,14 @@ export class OutsideClickDirective {
 
     @HostListener('document:click', ['$event.target'])
     public onClick(targetElement): void {
+        this._onClick(targetElement);
+    }
+    @HostListener('document:touchstart', ['$event.target'])
+    public onTouch(targetElement): void {
+        this._onClick(targetElement);
+    }
+
+    private _onClick(targetElement): void {
         const clickedInside = this._elementRef.nativeElement.contains(targetElement);
 
         if (!clickedInside) {
