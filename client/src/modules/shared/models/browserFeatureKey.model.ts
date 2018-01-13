@@ -1,4 +1,5 @@
 export enum BrowserFeatureKey {
+    ServiceWorker = 'Service Worker',
     Cache = 'Offline Capabilities',
     PushAPI = 'Push data',
     NotificationsAPI = 'Notifications',

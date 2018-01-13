@@ -18,6 +18,7 @@ export class FeatureService {
         this._browser = detect();
 
         this._features = {
+            [BrowserFeatureKey.ServiceWorker]: 'serviceWorker' in this._window.navigator,
             [BrowserFeatureKey.Cache]: 'caches' in this._window,
             [BrowserFeatureKey.PushAPI]: 'PushManager' in this._window,
             [BrowserFeatureKey.NotificationsAPI]: 'Notification' in this._window,
