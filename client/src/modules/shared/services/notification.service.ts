@@ -16,7 +16,7 @@ export class NotificationService {
         if (!this._featureService.detectFeature(BrowserFeatureKey.NotificationsAPI).supported) {
             this._showInAppNotification(title, message);
         } else {
-            Notification.requestPermission().then(permission => {
+            Notification.requestPermission(permission => {
                 if (permission === 'granted') {
                     const notification = new Notification(title, {
                         body: message
@@ -24,9 +24,7 @@ export class NotificationService {
                 } else {
                     this._showInAppNotification(title, message);
                 }
-            })
-
-
+            });
         }
     }
 
