@@ -8,6 +8,13 @@ export const ROUTES: Routes = [
         redirectTo: '/home'
     },
     {
+        path: 'home/:id',
+        component: HomeComponent,
+        data: {
+            title: 'PWA @ ngEurope',
+        },
+    },
+    {
         path: 'home',
         component: HomeComponent,
         data: {

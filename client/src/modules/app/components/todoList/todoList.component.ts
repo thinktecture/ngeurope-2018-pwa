@@ -1,15 +1,19 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren} from '@angular/core';
+import {
+    ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, Output, QueryList, SimpleChanges,
+    ViewChildren
+} from '@angular/core';
 import {ITodoItem} from '../../../shared/models/contracts/todoItem.interface';
 import {ShareService} from '../../../shared/services/share.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {WindowRef} from '../../../shared/services/windowRef';
 import {TodoItem} from '../../../shared/models/todoItem.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'todo-list',
     templateUrl: 'todoList.component.html',
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnChanges {
     @Input() public items: Array<ITodoItem>;
     @Output() public itemChanged = new EventEmitter<ITodoItem>();
     @Output() public itemDeleted = new EventEmitter<ITodoItem>();
@@ -22,8 +26,17 @@ export class TodoListComponent {
     private _hasNewItem: boolean;
 
     constructor(private _shareService: ShareService, private _notificationService: NotificationService, _windowRef: WindowRef,
-                private _changeDetectorRef: ChangeDetectorRef) {
+                private _changeDetectorRef: ChangeDetectorRef, private _activatedRoute: ActivatedRoute, private _router: Router) {
         this._shareUrl = _windowRef.nativeWindow.location.href;
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (changes.items && this.items) {
+            const itemIndex = this.items.findIndex(item => item.syncId && item.syncId === this._activatedRoute.snapshot.queryParams.id);
+            if (itemIndex >= 0) {
+                this.activeItemIndex = itemIndex;
+            }
+        }
     }
 
     public changeItemCompleted(item: ITodoItem, completed: boolean): void {
@@ -59,6 +72,7 @@ export class TodoListComponent {
         this.activeItemIndex = index;
         this._hasNewItem = !item.text;
         this._itemCopy = Object.assign({}, item);
+        this._router.navigate(['/home'], { queryParams: { id: item.syncId } })
     }
 
     public activateItem(itemToActivate: ITodoItem): void {
