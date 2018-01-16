@@ -26,3 +26,11 @@ ng-component {
         }
     }
 }
+
+.tt__card {
+    .content {
+        &.no-header {
+            margin-top: 0;
+        }
+    }
+}
