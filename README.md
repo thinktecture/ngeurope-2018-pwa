@@ -6,7 +6,7 @@ Your trainers: [Christian Weyer](https://twitter.com/christianweyer), [Christian
 
 ## Setup
 
-As we are expecting a high number of participants and have seen a lot of unreliable conference WiFis, we kindly ask you to prepare the following setup steps at home or in the hotel.
+As we are expecting a high number of participants and we’ve seen a lot of unreliable conference WiFis, we kindly ask you to prepare the following setup steps at home or in the hotel.
 
 ### Step 1: Devices and Software
 
@@ -47,9 +47,9 @@ Next, navigate to a folder of your choice and execute:
 ```
 git clone https://github.com/thinktecture/ngeurope-2018-pwa.git
 cd ngeurope-2018-pwa/api
-npm install   # or yarn (if installed)
+npm install   # or yarn install (if installed)
 cd ../client
-npm install   # or yarn (if installed)
+npm install   # or yarn install (if installed)
 ```
 
 If you prefer SSH, you can use this checkout URL: `git@github.com:thinktecture/ngeurope-2018-pwa.git`
