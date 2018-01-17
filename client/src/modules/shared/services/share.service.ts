@@ -1,15 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {FeatureService} from './feature.service';
-import {WindowRef} from './windowRef';
 import {Observable} from 'rxjs/Observable';
 import {BrowserFeatureKey} from '../models/browserFeatureKey.model';
+import {WINDOW} from './window.token';
 
 @Injectable()
 export class ShareService {
-    private _window: Window;
-
-    constructor(private _featureService: FeatureService, _windowRef: WindowRef) {
-        this._window = _windowRef.nativeWindow;
+    constructor(private _featureService: FeatureService, @Inject(WINDOW) private _window: Window) {
     }
 
     public share(title: string, text: string, url: string): Observable<boolean> {

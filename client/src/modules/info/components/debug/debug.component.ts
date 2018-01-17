@@ -1,24 +1,22 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {WindowRef} from '../../../shared/services/windowRef';
+import {Component, ElementRef, Inject, ViewChild} from '@angular/core';
 import {TodoService} from '../../../shared/services/base/todo.service';
 import {PushNotificationService} from '../../../shared/services/pushNotification.service';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {ApiService} from '../../../shared/services/base/api.service';
+import {WINDOW} from '../../../shared/services/window.token';
 
 @Component({
     templateUrl: 'debug.component.html',
     styleUrls: ['debug.component.scss']
 })
 export class DebugComponent {
-    private _window: Window;
-
     @ViewChild('info')
     public info: ElementRef;
     public debugInfo = '';
 
-    constructor(windowRef: WindowRef, private _todoService: TodoService, private _pushNotificationService: PushNotificationService,
-                private _notificationService: NotificationService, private _apiService: ApiService) {
-        this._window = windowRef.nativeWindow;
+    constructor(private _todoService: TodoService, private _pushNotificationService: PushNotificationService,
+                private _notificationService: NotificationService, private _apiService: ApiService,
+                @Inject(WINDOW) private _window: Window) {
     }
 
     public clearDatabase(): void {

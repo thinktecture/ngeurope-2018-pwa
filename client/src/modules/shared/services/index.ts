@@ -1,4 +1,3 @@
-import {WindowRef} from './windowRef';
 import {FeatureService} from './feature.service';
 import {TodoService} from './base/todo.service';
 import {TodoServiceRef} from './todo.service.ref';
@@ -13,7 +12,6 @@ import {NotificationService} from './notification.service';
 import {ShareService} from './share.service';
 
 export const SHARED_SERVICES = [
-    WindowRef,
     FeatureService,
     PushNotificationService,
     { provide: TodoService, useClass: TodoServiceRef },

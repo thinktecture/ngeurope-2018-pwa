@@ -4,6 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {SHARED_COMPONENTS} from './components';
+import {_window, WINDOW} from './services/window.token';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,10 @@ export class SharedModule {
     public static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: SHARED_SERVICES,
+            providers: [
+                ...SHARED_SERVICES,
+                { provide: WINDOW, useFactory: _window }
+            ],
         };
     }
 }

@@ -1,13 +1,13 @@
 import {
-    ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, Output, QueryList, SimpleChanges,
+    ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input, OnChanges, Output, QueryList, SimpleChanges,
     ViewChildren
 } from '@angular/core';
 import {ITodoItem} from '../../../shared/models/contracts/todoItem.interface';
 import {ShareService} from '../../../shared/services/share.service';
 import {NotificationService} from '../../../shared/services/notification.service';
-import {WindowRef} from '../../../shared/services/windowRef';
 import {TodoItem} from '../../../shared/models/todoItem.model';
 import {ActivatedRoute, Router} from '@angular/router';
+import {WINDOW} from '../../../shared/services/window.token';
 
 @Component({
     selector: 'todo-list',
@@ -25,9 +25,9 @@ export class TodoListComponent implements OnChanges {
     private _itemCopy: ITodoItem;
     private _hasNewItem: boolean;
 
-    constructor(private _shareService: ShareService, private _notificationService: NotificationService, _windowRef: WindowRef,
+    constructor(private _shareService: ShareService, private _notificationService: NotificationService,@Inject(WINDOW) _window: Window,
                 private _changeDetectorRef: ChangeDetectorRef, private _activatedRoute: ActivatedRoute, private _router: Router) {
-        this._shareUrl = _windowRef.nativeWindow.location.href;
+        this._shareUrl = _window.location.href;
     }
 
     public ngOnChanges(changes: SimpleChanges): void {

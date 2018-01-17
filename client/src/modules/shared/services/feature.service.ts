@@ -1,19 +1,17 @@
-import {Injectable} from '@angular/core';
-import {WindowRef} from './windowRef';
+import {Inject, Injectable} from '@angular/core';
 import {BrowserFeatureKey} from '../models/browserFeatureKey.model';
 import {BrowserFeature} from '../models/browserFeature.model';
 import {detect} from 'detect-browser';
+import {WINDOW} from './window.token';
 
 @Injectable()
 export class FeatureService {
-    private _window: Window;
     private _nav: Navigator;
     private _browser: any;
 
     private _features: any;
 
-    constructor(windowRef: WindowRef) {
-        this._window = windowRef.nativeWindow;
+    constructor(@Inject(WINDOW) private _window: Window) {
         this._nav = this._window.navigator;
         this._browser = detect();
 
