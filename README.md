@@ -10,7 +10,7 @@ As we are expecting a high number of participants and have seen a lot of unrelia
 
 ### Step 1: Devices and Software
 
-Please bring your developer devices and install the following software. [Already done? Click here for step 2.](#step2demorepository)
+Please bring your developer devices and install the following software. [Already done? Click here for step 2.](#step-2-demo-repository)
 
 **NOTE:** As web technologies move fast and quickly, there might be new releases in the meantime. To ensure everything works as intended, we strictly recommend you to stick to the versions noted below.
 
