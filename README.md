@@ -12,21 +12,23 @@ As we are expecting a high number of participants and we’ve seen a lot of unre
 
 Please bring your developer devices and install the following software. [Already done? Click here for step 2.](#step-2-demo-repository)
 
-**NOTE:** As web technologies move fast and quickly, there might be new releases in the meantime. To ensure everything works as intended, we strictly recommend you to stick to the versions noted below.
+**NOTE:** As web technologies move fast and quickly, there might be new releases in the meantime. To ensure everything works as intended, we strictly recommend you to stick to the versions noted below. Thanks!
 
 #### Devices
 - Laptop with recent Windows/macOS/Linux version
 - Optional: Android smartphone/tablet with recent Android and Chrome version
+- Note: iOS Devices do not yet support the technologies that make a real PWA - sorry
 
 #### Browsers (Desktop)
-- [Google Chrome](https://www.google.de/chrome/browser/desktop/), version 63
-- Optional: [Mozilla Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/), version 58
-- Optional: [Google Chrome Canary](https://www.google.com/chrome/browser/canary.html), version 65
+- [Google Chrome](https://www.google.de/chrome/browser/desktop/), version 63 or later
+- Optional: [Mozilla Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/), version 58 or later
+- Optional: [Google Chrome Canary](https://www.google.com/chrome/browser/canary.html), version 65 or later
 
 #### Developer Tools
 - [Git](https://git-scm.com/) (obviously)
   - Optional: Git UI tool such as TortoiseGit, Tower, SourceTree, GitKraken, …
 - [Node.js](https://nodejs.org/en/), version 8.9.4 LTS
+- [ngrok](https://ngrok.com/download) for secure & easy TCP/HTTP/HTTPS tunneling during development
 - Editor of your choice
   - [WebStorm](https://www.jetbrains.com/webstorm/) 2017.3.3 (commercial, free trial)
   - [Visual Studio Code](https://code.visualstudio.com/), recent version
