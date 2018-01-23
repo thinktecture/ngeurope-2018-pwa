@@ -1,36 +1,40 @@
 @import "../ui-kit/global/colors";
 
 ng-component {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 .tt__list {
-    .actions {
-        .icon {
-            &.disabled {
-                color: $text-color-dark;
-            }
+  .actions {
+    .icon {
+      &.disabled {
+        color: $text-color-dark;
+      }
 
-            &:not(.disabled) {
-                cursor: pointer;
-            }
-        }
+      &:not(.disabled) {
+        cursor: pointer;
+      }
     }
+  }
 }
 
 .tt__navigation {
-    ul {
-        li {
-            cursor: pointer;
-        }
+  ul {
+    li {
+      cursor: pointer;
     }
+  }
 }
 
 .tt__card {
-    .content {
-        &.no-header {
-            margin-top: 0;
-        }
+  .content {
+    &.no-header {
+      margin-top: 0;
     }
+  }
+}
+
+router-outlet + ng-component {
+  justify-content: center;
 }

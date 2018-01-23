@@ -1,3 +1,5 @@
+@import "../mixins/_media-queries.scss";
+
 .tt__app-bar {
   background-color: $page-background-color;
   height: $app-bar-height;
@@ -9,6 +11,10 @@
   left: 0;
   top: 0;
   z-index: 9;
+
+  @include tablet-landscape() {
+    padding-left: 8rem;
+  }
 
   h1 {
     color: $brand-color;

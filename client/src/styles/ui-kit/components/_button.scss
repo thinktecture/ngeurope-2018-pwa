@@ -1,5 +1,5 @@
 button {
-  background: $default-gradient;
+  background-color: $brand-color;
 
   height: 2.8rem;
 
@@ -13,10 +13,19 @@ button {
   border-radius: 10px;
   box-shadow: 0 5px 7px 0 rgba(255,88,79,0.25);
   padding: 0 1rem;
+  transition: .15s box-shadow ease-in-out;
+
+  &:active {
+    background-color: lighten($brand-color, 2.5%);
+    box-shadow: 0 7px 12px 0 rgba(255,88,79,0.35);
+    text-shadow: 0 1px 0 rgba(0,0,0, .1);
+  }
 
   &:focus { outline: none; }
 
   &.tiny, .tt__card header & {
+    background: $default-gradient;
+
     height: 2rem;
 
     font-size: 1.1rem;
