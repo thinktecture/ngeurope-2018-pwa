@@ -1,23 +1,36 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {TodoService} from '../../../shared/services/base/todo.service';
 import {ITodoItem} from '../../../shared/models/contracts/todoItem.interface';
 import {SyncService} from '../../../shared/services/base/sync.service';
 import {TodoListComponent} from '../todoList/todoList.component';
+import {AppStateService} from '../../../shared/services/appState.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
     templateUrl: 'home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+    private _stateChangeSubscription: Subscription;
+
     @ViewChild(TodoListComponent) public list: TodoListComponent;
 
     public items: Array<ITodoItem>;
+    public isAppOnline = true;
 
-    constructor(private _todoService: TodoService, private _syncService: SyncService) {
+    constructor(private _todoService: TodoService, private _syncService: SyncService, private _appStateAService: AppStateService) {
     }
 
     public ngOnInit(): void {
         this._todoService.getAll(false)
             .then(items => this.items = items);
+
+        this._stateChangeSubscription = this._appStateAService.onlineStateChange.subscribe(online => this.isAppOnline = online);
+    }
+
+    public ngOnDestroy(): void {
+        if (this._stateChangeSubscription) {
+            this._stateChangeSubscription.unsubscribe();
+        }
     }
 
     public updateItem(item: ITodoItem): void {

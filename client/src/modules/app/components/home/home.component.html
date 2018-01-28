@@ -1,7 +1,7 @@
 <div class="tt__card">
     <header>
         <h1>Your TODOs</h1>
-        <button (click)="sync()">Sync</button>
+        <button *ngIf="isAppOnline" (click)="sync()">Sync</button>
     </header>
     <div class="content">
         <todo-list #list [items]="items" (itemChanged)="updateItem($event)" (itemDeleted)="deleteItem($event)"></todo-list>

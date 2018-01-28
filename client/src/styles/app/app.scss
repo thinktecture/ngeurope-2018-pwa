@@ -38,3 +38,11 @@ ng-component {
 router-outlet + ng-component {
   justify-content: center;
 }
+
+app-indicator {
+    position: fixed;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    color: $brand-color;
+    font-size: 2.5rem;
+}

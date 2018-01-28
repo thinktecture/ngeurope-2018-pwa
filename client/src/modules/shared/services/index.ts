@@ -10,6 +10,7 @@ import {DatabaseService} from './base/database.service';
 import {DatabaseServiceRef} from './database.service.ref';
 import {NotificationService} from './notification.service';
 import {ShareService} from './share.service';
+import {AppStateService} from './appState.service';
 
 export const SHARED_SERVICES = [
     FeatureService,
@@ -20,4 +21,5 @@ export const SHARED_SERVICES = [
     { provide: DatabaseService, useClass: DatabaseServiceRef },
     NotificationService,
     ShareService,
+    AppStateService,
 ];
