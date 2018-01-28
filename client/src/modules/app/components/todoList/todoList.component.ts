@@ -25,7 +25,7 @@ export class TodoListComponent implements OnChanges {
     private _itemCopy: ITodoItem;
     private _hasNewItem: boolean;
 
-    constructor(private _shareService: ShareService, private _notificationService: NotificationService,@Inject(WINDOW) _window: Window,
+    constructor(private _shareService: ShareService, private _notificationService: NotificationService, @Inject(WINDOW) _window: Window,
                 private _changeDetectorRef: ChangeDetectorRef, private _activatedRoute: ActivatedRoute, private _router: Router) {
         this._shareUrl = _window.location.href;
     }
@@ -137,21 +137,17 @@ export class TodoListComponent implements OnChanges {
         this._blurAllFields(); // List has changed and blur is necessary
     }
 
-    public handleKey(event) {
-        if (event.keyCode === 13) { // Enter
-            const item = this.items[this.activeItemIndex];
-            if (!item.text) {
-                if (this._itemCopy.text) {
-                    this.items[this.activeItemIndex] = this._itemCopy;
-                } else {
-                    this._deleteItem(this.items[this.activeItemIndex]);
-                }
+    public onSubmit() {
+        const item = this.items[this.activeItemIndex];
+        if (!item.text) {
+            if (this._itemCopy.text) {
+                this.items[this.activeItemIndex] = this._itemCopy;
             } else {
-                this.saveItem(item);
+                this._deleteItem(this.items[this.activeItemIndex]);
             }
-            this._blurInputField(this.activeItemIndex);
-            this.activeItemIndex = -1;
         }
+        this._blurInputField(this.activeItemIndex);
+        this.activeItemIndex = -1;
     }
 
     public leaveList() {
