@@ -137,17 +137,19 @@ export class TodoListComponent implements OnChanges {
         this._blurAllFields(); // List has changed and blur is necessary
     }
 
-    public onSubmit() {
-        const item = this.items[this.activeItemIndex];
-        if (!item.text) {
-            if (this._itemCopy.text) {
-                this.items[this.activeItemIndex] = this._itemCopy;
-            } else {
-                this._deleteItem(this.items[this.activeItemIndex]);
+    public handleKey(event) {
+        if (event.keyCode === 13) { // Enter
+            const item = this.items[this.activeItemIndex];
+            if (!item.text) {
+                if (this._itemCopy.text) {
+                    this.items[this.activeItemIndex] = this._itemCopy;
+                } else {
+                    this._deleteItem(this.items[this.activeItemIndex]);
+                }
             }
+            this._blurInputField(this.activeItemIndex);
+            this.activeItemIndex = -1;
         }
-        this._blurInputField(this.activeItemIndex);
-        this.activeItemIndex = -1;
     }
 
     public leaveList() {
