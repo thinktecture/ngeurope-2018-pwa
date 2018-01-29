@@ -12,7 +12,7 @@ export class UpdateService {
 
     public register(): void {
         this._subscription = this._swUpdate.available.subscribe(() => this._notificationService
-            .showNotification('Update available!', 'Please reload to update the application');
+            .showNotification('Update available!', 'Please reload to update the application'));
     }
 
     public unregister(): void {
