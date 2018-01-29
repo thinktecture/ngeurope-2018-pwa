@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class AppStateService {
     private _renderer: Renderer2;
-    private readonly _stateChange = new BehaviorSubject<boolean>(false);
+    private readonly _stateChange = new BehaviorSubject<boolean>(true);
     private _onlineListenerFn = () => void 0;
     private _offlineListenerFn = () => void 0;
 
