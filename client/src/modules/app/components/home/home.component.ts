@@ -5,6 +5,8 @@ import {SyncService} from '../../../shared/services/base/sync.service';
 import {TodoListComponent} from '../todoList/todoList.component';
 import {AppStateService} from '../../../shared/services/appState.service';
 import {Subscription} from 'rxjs/Subscription';
+import {switchMap, tap} from 'rxjs/operators';
+import {fromPromise} from 'rxjs/observable/fromPromise';
 
 @Component({
     templateUrl: 'home.component.html'
@@ -20,10 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(private _todoService: TodoService, private _syncService: SyncService, private _appStateAService: AppStateService) {
     }
 
-    public ngOnInit(): void {
-        this._todoService.getAll(false)
-            .then(items => this.items = items);
-
+    public async ngOnInit(): Promise<void> {
+        this.items = await this._todoService.getAll(false);
         this._stateChangeSubscription = this._appStateAService.onlineStateChange.subscribe(online => this.isAppOnline = online);
     }
 
@@ -42,15 +42,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     }
 
-    public deleteItem(item: ITodoItem): void {
+    public async deleteItem(item: ITodoItem): Promise<void> {
         if (item.id) {
-            this._todoService.delete(item)
-                .then(
-                    () => {
-                        this._removeItemFromList(item);
-                    },
-                    (error) => console.log('Error while deleting!', error)
-                );
+            try {
+                await this._todoService.delete(item);
+            } catch (error) {
+                console.log('Error while deleting!', error);
+            }
         } else {
             this._removeItemFromList(item);
         }
@@ -61,14 +59,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     public sync(): void {
-        this._todoService.getAll(true)
-            .then(items => {
-                return this._syncService.sync(items)
-                    .subscribe(result => {
-                        this._todoService.overwrite(result)
-                            .then(items => this.items = items);
-                    });
-            });
+        fromPromise(this._todoService.getAll(true))
+            .pipe(
+                switchMap(items => this._syncService.sync(items)),
+                switchMap(result => fromPromise(this._todoService.overwrite(result as Array<ITodoItem>))),
+                tap(items => this.items = items)
+            ).subscribe();
     }
 
     private _removeItemFromList(item: ITodoItem): void {

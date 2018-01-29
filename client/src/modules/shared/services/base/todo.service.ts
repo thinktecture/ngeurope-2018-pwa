@@ -20,25 +20,23 @@ export class TodoService {
         return this.table.put(item);
     }
 
-    public update(item: ITodoItem): Promise<boolean> {
+    public async update(item: ITodoItem): Promise<boolean> {
         item.changed = true;
-        return this.table.update(item.id, item)
-            .then(success => !!success)
+        return !!(await this.table.update(item.id, item));
     }
 
-    public delete(item: ITodoItem): Promise<boolean> {
+    public async delete(item: ITodoItem): Promise<boolean> {
         item.deleted = true;
-        return this.table.update(item.id, item)
-            .then(success => !!success);
+        return !!(await this.table.update(item.id, item));
     }
 
-    public overwrite(list: Array<ITodoItem>): Promise<Array<ITodoItem>> {
+    public async overwrite(list: Array<ITodoItem>): Promise<Array<ITodoItem>> {
         // Delete IDs to prevent duplicate key
         list.forEach(item => delete item.id);
 
-        return this.table.clear()
-            .then(() => this.table.bulkAdd(list))
-            .then(() => this.getAll(false));
+        await this.table.clear();
+        await this.table.bulkAdd(list);
+        return this.getAll(false);
     }
 
     public clear(): Promise<void> {

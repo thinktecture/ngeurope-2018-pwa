@@ -19,8 +19,9 @@ export class DebugComponent {
                 @Inject(WINDOW) private _window: Window) {
     }
 
-    public clearDatabase(): void {
-        this._todoService.clear().then(() => this._addDebugInfo('Database cleared.'))
+    public async clearDatabase(): Promise<void> {
+        await this._todoService.clear();
+        this._addDebugInfo('Database cleared.')
     }
 
     public unregisterPush(): void {
@@ -31,15 +32,13 @@ export class DebugComponent {
                 } else {
                     this._addDebugInfo('Unregister push notification failed.')
                 }
-            })
+            });
     }
 
-    public unregisterServiceWorker(): void {
-        this._window.navigator.serviceWorker.getRegistrations()
-            .then(registrations => {
-                registrations.forEach(registration => registration.unregister());
-                this._addDebugInfo('Service worker unregistered.');
-            })
+    public async unregisterServiceWorker(): Promise<void> {
+        const registrations = await this._window.navigator.serviceWorker.getRegistrations();
+        registrations.forEach(registration => registration.unregister());
+        this._addDebugInfo('Service worker unregistered.');
     }
 
     public clearInfo(): void {
