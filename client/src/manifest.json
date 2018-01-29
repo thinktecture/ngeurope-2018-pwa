@@ -21,9 +21,5 @@
     "theme_color": "#ff584f",
     "background_color": "#ffffff",
     "start_url": "/index.html",
-    "display": "standalone",
-    "push": {
-        "showNotifications": true,
-        "backgroundOnly": true
-    }
+    "display": "standalone"
 }
