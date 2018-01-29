@@ -22,8 +22,6 @@
             "serviceWorker": true,
             "prefix": "app",
             "styles": [
-                "styles/ui-kit/ui-kit.scss",
-                "styles/app/app.scss"
             ],
             "scripts": [],
             "environmentSource": "environments/environment.ts",
