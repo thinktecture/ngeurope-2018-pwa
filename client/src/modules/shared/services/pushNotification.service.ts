@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {SwPush} from '@angular/service-worker';
 import {Observable} from 'rxjs/Observable';
 import {switchMap} from 'rxjs/operators';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/of';
 import {ApiService} from './base/api.service';
 import {Subscription} from 'rxjs/Subscription';
 import {environment} from '../../../environments/environment';
+import {of} from 'rxjs/observable/of';
+import {fromPromise} from 'rxjs/observable/fromPromise';
 
 @Injectable()
 export class PushNotificationService {
@@ -22,10 +22,9 @@ export class PushNotificationService {
         }
 
         // Key generation: https://web-push-codelab.glitch.me/
-        this._subscription = Observable
-            .fromPromise(this._swPush.requestSubscription({
-                serverPublicKey: environment.push.publicKey
-            }))
+        this._subscription = fromPromise(this._swPush.requestSubscription({
+            serverPublicKey: environment.push.publicKey
+        }))
             .pipe(
                 switchMap(subscription => {
                     this._pushSubscription = subscription;
@@ -40,9 +39,9 @@ export class PushNotificationService {
             this._subscription.unsubscribe();
         }
         if (this._pushSubscription) {
-            return Observable.fromPromise(this._pushSubscription.unsubscribe());
+            return fromPromise(this._pushSubscription.unsubscribe());
         }
 
-        return Observable.of(true);
+        return of(true);
     }
 }
