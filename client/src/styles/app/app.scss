@@ -45,4 +45,19 @@ router-outlet + ng-component {
     position: absolute;
     right: 2rem;
     top: 1.5rem;
+    animation: glow .5s infinite alternate;
+}
+
+@keyframes glow {
+    to {
+        text-shadow: 0 0 1px $accent-color;
+    }
+}
+
+.sync {
+    &[disabled]{
+        box-shadow: none;
+        background: #D2D7DC;
+        color: #F3F9FF;
+    }
 }
