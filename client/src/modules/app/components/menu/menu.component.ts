@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {BlurService} from '../../services/blur.service';
 
 @Component({
     selector: 'app-menu',
@@ -7,15 +8,16 @@ import {Component} from '@angular/core';
 export class MenuComponent {
     public isOpen: boolean;
 
+    constructor(private _blurService: BlurService) {
+    }
+
     public toggle(): void {
         this.isOpen = !this.isOpen;
-        // TODO
-        document.querySelector('.tt__blur-container').classList.toggle('active');
+        this._blurService.toggleBlur();
     }
 
     public close(): void {
         this.isOpen = false;
-        // TODO
-        document.querySelector('.tt__blur-container').classList.remove('active');
+        this._blurService.focusApplication();
     }
 }
