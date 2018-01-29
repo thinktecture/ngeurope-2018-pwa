@@ -3,6 +3,8 @@ import {FeatureService} from './feature.service';
 import {Observable} from 'rxjs/Observable';
 import {BrowserFeatureKey} from '../models/browserFeatureKey.model';
 import {WINDOW} from './window.token';
+import {fromPromise} from 'rxjs/observable/fromPromise';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class ShareService {
@@ -12,10 +14,10 @@ export class ShareService {
     public share(title: string, text: string, url: string): Observable<boolean> {
         const feature = this._featureService.detectFeature(BrowserFeatureKey.WebShareAPI);
         if (feature.supported) {
-            return Observable.fromPromise(this._share(title, text, url));
+            return fromPromise(this._share(title, text, url));
         } else {
             this._sendMail(title, text, url);
-            return Observable.of(true);
+            return of(true);
         }
     }
 
