@@ -10,6 +10,8 @@
 
 # IDEs and editors
 /.idea
+/client/.idea
+/api/.idea
 .project
 .classpath
 .c9/
