@@ -1,7 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {FeatureService} from './feature.service';
 import {Observable} from 'rxjs/Observable';
-import {BrowserFeatureKey} from '../models/browserFeatureKey.model';
 import {WINDOW} from './window.token';
 
 @Injectable()
@@ -10,21 +9,11 @@ export class ShareService {
     }
 
     public share(title: string, text: string, url: string): Observable<boolean> {
-        const feature = this._featureService.detectFeature(BrowserFeatureKey.WebShareAPI);
-        if (feature.supported) {
-            return Observable.fromPromise(this._share(title, text, url));
-        } else {
-            this._sendMail(title, text, url);
-            return Observable.of(true);
-        }
+        // TODO
     }
 
     private _share(title: string, text: string, url: string): Promise<boolean> {
-        return this._window.navigator.share({
-            title: title,
-            text: text,
-            url: url
-        });
+        // TODO
     }
 
     private _sendMail(title: string, text: string, url: string) {
