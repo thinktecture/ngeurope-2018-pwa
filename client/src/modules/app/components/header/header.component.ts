@@ -1,8 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
 import {filter, map, mergeMap, tap} from 'rxjs/operators';
 import {AppStateService} from '../../../shared/services/appState.service';
 import {Subscription} from 'rxjs/Subscription';
