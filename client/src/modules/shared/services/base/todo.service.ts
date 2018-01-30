@@ -11,23 +11,23 @@ export class TodoService {
 
     public getAll(includeDeleted: boolean): Promise<Array<ITodoItem>> {
         if (includeDeleted) {
-            return this.table.toArray();
+            // TODO
         }
-        return this.table.filter(item => !item.deleted).reverse().toArray();
+        // TODO
     }
 
     public add(item: ITodoItem): Promise<number> {
-        return this.table.put(item);
+        // TODO
     }
 
     public async update(item: ITodoItem): Promise<boolean> {
         item.changed = true;
-        return !!(await this.table.update(item.id, item));
+        // TODO
     }
 
     public async delete(item: ITodoItem): Promise<boolean> {
         item.deleted = true;
-        return !!(await this.table.update(item.id, item));
+        // TODO
     }
 
     public async overwrite(list: Array<ITodoItem>): Promise<Array<ITodoItem>> {

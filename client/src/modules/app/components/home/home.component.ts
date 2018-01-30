@@ -5,8 +5,6 @@ import {SyncService} from '../../../shared/services/base/sync.service';
 import {TodoListComponent} from '../todoList/todoList.component';
 import {AppStateService} from '../../../shared/services/appState.service';
 import {Subscription} from 'rxjs/Subscription';
-import {switchMap, tap} from 'rxjs/operators';
-import {fromPromise} from 'rxjs/observable/fromPromise';
 
 @Component({
     templateUrl: 'home.component.html'
@@ -33,6 +31,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
+    public sync(): void {
+        // TODO:
+    }
+
     public updateItem(item: ITodoItem): void {
         if (item.id) {
             this._todoService.update(item);
@@ -56,15 +58,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public createItem(): void {
         this.list.addNewItem();
-    }
-
-    public sync(): void {
-        fromPromise(this._todoService.getAll(true))
-            .pipe(
-                switchMap(items => this._syncService.sync(items)),
-                switchMap(result => fromPromise(this._todoService.overwrite(result as Array<ITodoItem>))),
-                tap(items => this.items = items)
-            ).subscribe();
     }
 
     private _removeItemFromList(item: ITodoItem): void {
