@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (item.id) {
             try {
                 await this._todoService.delete(item);
+                this._removeItemFromList(item);
             } catch (error) {
                 console.log('Error while deleting!', error);
             }
