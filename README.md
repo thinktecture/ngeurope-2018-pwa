@@ -40,8 +40,8 @@ On your favorite terminal, please run:
 
 ```
 npm uninstall -g angular-cli @angular/cli
-npm cache clear
-npm install -g @angular/cli@1.6.4
+npm cache verify
+npm install -g @angular/cli@1.6.6
 ```
 
 Next, navigate to a folder of your choice and execute:
