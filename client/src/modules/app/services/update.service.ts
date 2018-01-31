@@ -8,15 +8,15 @@ import {WINDOW} from '../../shared/services/window.token';
 export class UpdateService {
     private _subscription: Subscription;
 
-    constructor(private _swUpdate: SwUpdate, private _notificationService: NotificationService,
-                @Inject(WINDOW) private _window: Window) {
+    constructor(private _swUpdate: SwUpdate, private _notificationService: NotificationService) {
     }
 
     public register(): void {
-        this._subscription = this._swUpdate.available.subscribe(() => {
-                this._notificationService.showNotification('Update available!', 'Please reload to update the application');
-            }
-        );
+        if (!this._swUpdate.isEnabled) {
+            return;
+        }
+        this._subscription = this._swUpdate.available.subscribe(() => this._notificationService
+            .showNotification('Update available!', 'Please reload to update the application'));
     }
 
     public unregister(): void {
