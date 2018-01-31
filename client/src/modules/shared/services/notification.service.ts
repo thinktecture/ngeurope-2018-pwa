@@ -13,7 +13,7 @@ export class NotificationService {
     }
 
     public showNotification(title: string, message: string): void {
-        if (!this._featureService.detectFeature(BrowserFeatureKey.NotificationsAPI).supported) {
+        if (!this._featureService.detectFeature(BrowserFeatureKey.NotificationsAPI).supported || this._featureService.isMobileAndroid()) {
             this._showInAppNotification(title, message);
         } else {
             Notification.requestPermission(permission => {
