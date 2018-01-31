@@ -21,6 +21,7 @@ export class PushNotificationService {
 
         // Key generation: https://web-push-codelab.glitch.me
         const subscription = await this._swPush.requestSubscription({ serverPublicKey: environment.push.publicKey});
+        console.log(subscription);
         this._pushSubscription = subscription;
         this._apiService.post('push/register', subscription).subscribe();
     }
