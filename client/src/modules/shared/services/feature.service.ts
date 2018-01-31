@@ -52,4 +52,8 @@ export class FeatureService {
     public getBrowserVersion() {
         return this._browser.version;
     }
+
+    public isMobileAndroid(): boolean {
+        return this._window.navigator.userAgent.toLowerCase().indexOf('android') > -1;
+    }
 }
