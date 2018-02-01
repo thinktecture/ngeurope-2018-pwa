@@ -5,10 +5,7 @@ import {SyncService} from '../../../shared/services/base/sync.service';
 import {TodoListComponent} from '../todoList/todoList.component';
 import {AppStateService} from '../../../shared/services/appState.service';
 import {Subscription} from 'rxjs/Subscription';
-import {
-    switchMap,
-    take
-} from 'rxjs/operators';
+import {switchMap,take} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/observable/fromPromise';
 
 @Component({
