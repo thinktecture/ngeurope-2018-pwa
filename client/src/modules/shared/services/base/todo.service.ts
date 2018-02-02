@@ -26,8 +26,13 @@ export class TodoService {
     }
 
     public async delete(item: ITodoItem): Promise<boolean> {
-        item.deleted = true;
-        return !!(await this.table.update(item.id, item));
+        if (!item.syncId) {
+            await this.table.delete(item.id);
+            return Promise.resolve(true);
+        } else {
+            item.deleted = true;
+            return !!(await this.table.update(item.id, item));
+        }
     }
 
     public async overwrite(list: Array<ITodoItem>): Promise<Array<ITodoItem>> {
