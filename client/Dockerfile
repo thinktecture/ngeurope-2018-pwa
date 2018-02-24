@@ -6,6 +6,6 @@ COPY ./ /app/
 ARG env=prod
 RUN npm run build-aot
 
-FROM nginx:1.13
+FROM fholzer/nginx-brotli
 COPY --from=node /app/build/ /usr/share/nginx/html
 COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
